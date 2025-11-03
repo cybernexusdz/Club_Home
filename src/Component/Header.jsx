@@ -8,31 +8,13 @@ const Header = () => {
   const {Theme,setTheme}=useThemeContext();
   const{Gender,setGender}=useGenderContext();
   const toggleMenu = () => setMenuOpen(!menuOpen);
+const handleTheme = () => {
+  setTheme(prev => (prev === "light" ? "dark" : "light"));
+};
 
-  const handleTheme=()=>{
-   const th = JSON.parse(localStorage.getItem("Theme"))
-    if(th==="light"){
-    localStorage.setItem("Theme",JSON.stringify("dark"))
-    setTheme("dark") 
-    }
-
-    if(th==="dark"){
-    localStorage.setItem("Theme",JSON.stringify("light"))
-    setTheme('light') 
-    }}
-  const handleGender=()=>{
-   const gender = JSON.parse(localStorage.getItem("Gender"))
-    if(gender==="Boys"){
-    localStorage.setItem("Gender",JSON.stringify("Girls"))
-    setGender("Girls") 
-    alert(gender)
-    }
-
-    if(gender==="Girls"){
-    localStorage.setItem("Gender",JSON.stringify("Boys"))
-    setGender('Boys') 
-    }
-    }
+const handleGender = () => {
+  setGender(prev => (prev === "Boys" ? "Girls" : "Boys"));
+};
   return (
     <header className="bg-gradient-to-r from-purpleCustom to-blueCustom shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -94,3 +76,28 @@ const Header = () => {
 };
 
 export default Header;
+/* const handleTheme=()=>{
+   const th = JSON.parse(localStorage.getItem("Theme"))
+    if(th==="light"){
+    localStorage.setItem("Theme",JSON.stringify("dark"))
+    setTheme("dark") 
+    }
+
+    if(th==="dark"){
+    localStorage.setItem("Theme",JSON.stringify("light"))
+    setTheme('light') 
+    }}
+  const handleGender=()=>{
+   const gender = JSON.parse(localStorage.getItem("Gender"))
+    if(gender==="Boys"){
+    localStorage.setItem("Gender",JSON.stringify("Girls"))
+    setGender("Girls") 
+    alert(gender)
+    }
+
+    if(gender==="Girls"){
+    localStorage.setItem("Gender",JSON.stringify("Boys"))
+    setGender('Boys') 
+    }
+    }
+ */
