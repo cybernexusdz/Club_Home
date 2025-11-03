@@ -5,16 +5,16 @@ import { useGenderContext } from "../Context/GenderContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const {Theme,setTheme}=useThemeContext();
-  const{Gender,setGender}=useGenderContext();
+  const { Theme, setTheme } = useThemeContext();
+  const { Gender, setGender } = useGenderContext();
   const toggleMenu = () => setMenuOpen(!menuOpen);
-const handleTheme = () => {
-  setTheme(prev => (prev === "light" ? "dark" : "light"));
-};
+  const handleTheme = () => {
+    setTheme(prev => (prev === "light" ? "dark" : "light"));
+  };
 
-const handleGender = () => {
-  setGender(prev => (prev === "Boys" ? "Girls" : "Boys"));
-};
+  const handleGender = () => {
+    setGender(prev => (prev === "Boys" ? "Girls" : "Boys"));
+  };
   return (
     <header className="bg-gradient-to-r from-purpleCustom to-blueCustom shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -23,22 +23,22 @@ const handleGender = () => {
           Cyber Nexus
         </div>
         <div>
-           <button
+          <button
             onClick={handleTheme}
             className="flex items-center justify-center w-10 h-10 rounded-full transition 
                  bg-gradient-to-r from-purpleCustom to-blueCustom text-white shadow-md hover:scale-105"
             title="Toggle theme"
-        >
-      {Theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-    </button>
-     <button
+          >
+            {Theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
+          <button
             onClick={handleGender}
             className="flex items-center justify-center w-10 h-10 rounded-full transition 
                  bg-gradient-to-r from-purpleCustom to-blueCustom text-white shadow-md hover:scale-105"
             title="Toggle theme"
-        >
-      {Gender === "Boys" ? <Mars  size={20} /> : <Venus  size={20} />}
-    </button>
+          >
+            {Gender === "Boys" ? <Mars size={20} /> : <Venus size={20} />}
+          </button>
         </div>
 
         {/* Desktop Navigation */}

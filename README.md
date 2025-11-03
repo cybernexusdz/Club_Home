@@ -36,11 +36,6 @@ npm run format # run prettier
 ## 🧰 Formatter
 
 * We use **Prettier**. Run `npm run format` before opening a PR.
-* `.prettierrc` (suggested):
-
-```json
-{ "printWidth": 100, "tabWidth": 2, "useTabs": false, "semi": true, "singleQuote": true }
-```
 
 ---
 
@@ -75,7 +70,6 @@ src/
 ## 🔧 Git & branching
 
 * `main` = protected (production).
-* Branches: `feat/123-short-desc`, `fix/123-short`.
 * Commits: short & clear. Example: `feat: add events card`.
 * Keep PRs focused and add screenshots for UI changes.
 
