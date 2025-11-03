@@ -1,17 +1,9 @@
 import Footer from "./Component/Footer";
 import Header from "./Component/Header";
-import { useGenderContext } from "./Context/GenderContext";
-import { useThemeContext } from "./Context/ThemeContext";
 
 function App() {
   
-  const {Theme,setTheme}=useThemeContext();
-  const{Gender,setGender}=useGenderContext();
-  /*
-  localStorage.setItem("theme",JSON.stringify(data))
-  //Context
-  setTheme(data)
-  */
+
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-navyDark to-purpleDeep">
