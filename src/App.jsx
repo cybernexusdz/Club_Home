@@ -1,31 +1,31 @@
 import Footer from "./component/Footer";
 import Header from "./component/Header";
+import EventSection from "./component/Events";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-navyDark to-purpleDeep">
+    <div className="min-h-screen flex flex-col bg-gradient-to-r from-navyDark to-purpleDeep text-textPrimary">
+      {/* Header */}
       <Header />
-      <main className="p-8 h-screen">
-        <h1 className="text-3xl font-bold text-textPrimary">
-          Welcome to Cyber Nexus 🚀
-        </h1>
-        {
-          //Hna Les Components Guys
-        }
+
+      {/* Main Content */}
+      <main className="p-8 min-h-screen overflow-y-auto">
+        <div className="max-w-7xl mx-auto text-center sm:text-left">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
+            Welcome to Cyber Nexus 🚀
+          </h1>
+
+          {/* Responsive Events Section */}
+          <div className="mt-10">
+            <EventSection />
+          </div>
+        </div>
       </main>
+
+      {/* Footer */}
       <Footer />
     </div>
   );
 }
 
 export default App;
-/*<Routes>
-      <Route path="/" element={<h1>bdina</h1>}/>
-      <Route path="/b" element={<h1>bdina2</h1>}/>
-    </Routes>
-    */
-/* <div className='flex-auto  backdrop-filter backdrop-blur-lg bg-opacity-0 bg-clip-padding'>
-         Welcome To Ha-Softwares 
-         you have a business , you are entreprenor ,you need website 
-       </div>
-      */
