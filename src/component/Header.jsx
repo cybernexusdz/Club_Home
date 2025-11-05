@@ -23,26 +23,26 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6">
-          <button className="text-textPrimary hover:text-accent transition">
+          <button className="text-textPrimary hover:text-primary transition">
             Home
           </button>
-          <button className="text-textPrimary hover:text-accent transition">
+          <button className="text-textPrimary hover:text-primary transition">
             Team
           </button>
-          <button className="text-textPrimary hover:text-accent transition">
+          <button className="text-textPrimary hover:text-primary transition">
             Events
           </button>
-          <button className="text-textPrimary hover:text-accent transition">
+          <button className="text-textPrimary hover:text-primary transition">
             Blogs
           </button>
-          <button className="text-textPrimary hover:text-accent transition">
+          <button className="text-textPrimary hover:text-primary transition">
             Projects
           </button>
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-textPrimary hover:text-accent transition"
+          className="md:hidden text-textPrimary hover:text-primary transition"
           onClick={toggleMenu}
         >
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -53,19 +53,19 @@ const Header = () => {
       {menuOpen && (
         <div className="md:hidden bg-bgPrimary border-t border-accent/20 shadow-md transition-colors duration-300">
           <nav className="flex flex-col items-center space-y-3 py-4">
-            <button className="text-textPrimary hover:text-accent transition">
+            <button className="text-textPrimary hover:text-primary transition">
               Home
             </button>
-            <button className="text-textPrimary hover:text-accent transition">
+            <button className="text-textPrimary hover:text-primary transition">
               Team
             </button>
-            <button className="text-textPrimary hover:text-accent transition">
+            <button className="text-textPrimary hover:text-primary transition">
               Events
             </button>
-            <button className="text-textPrimary hover:text-accent transition">
+            <button className="text-textPrimary hover:text-primary transition">
               Blogs
             </button>
-            <button className="text-textPrimary hover:text-accent transition">
+            <button className="text-textPrimary hover:text-primary transition">
               Projects
             </button>
           </nav>

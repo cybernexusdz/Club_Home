@@ -26,7 +26,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-accent transition-colors duration-200"
+                  className="hover:text-primary transition-colors duration-200"
                 >
                   Home
                 </a>
@@ -34,7 +34,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-accent transition-colors duration-200"
+                  className="hover:text-primary transition-colors duration-200"
                 >
                   Team
                 </a>
@@ -42,7 +42,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-accent transition-colors duration-200"
+                  className="hover:text-primary transition-colors duration-200"
                 >
                   Events
                 </a>
@@ -50,7 +50,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-accent transition-colors duration-200"
+                  className="hover:text-primary transition-colors duration-200"
                 >
                   Blogs
                 </a>
@@ -58,7 +58,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-accent transition-colors duration-200"
+                  className="hover:text-primary transition-colors duration-200"
                 >
                   Projects
                 </a>
