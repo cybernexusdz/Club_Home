@@ -1,6 +1,6 @@
 import Footer from "./component/Footer";
 import Header from "./component/Header";
-import HeroSection from "./component/hero-Section/HeroSection";
+import HeroSection from "./component/hero-section/HeroSection";
 
 function App() {
   return (
