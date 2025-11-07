@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { Search, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import ProjectCard from "../project-card/ProjectCard";
 
@@ -70,6 +70,8 @@ export default function ProjectsSection({
 }) {
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState(ALL_TAG);
+  const [fogOpacity, setFogOpacity] = useState({ left: 0, right: 1 });
+
   const carouselRef = useRef(null);
 
   const tags = useMemo(() => {
@@ -119,6 +121,46 @@ export default function ProjectsSection({
       behavior: "smooth",
     });
   };
+
+  // fog effects 
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+
+    const handleScroll = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = el;
+      const maxScroll = scrollWidth - clientWidth;
+
+      if (maxScroll <= 0) {
+        setFogOpacity({ left: 0, right: 0 });
+        return;
+      }
+
+      const threshold = 10; // pixels from edge to trigger fade
+      const fadeDistance = 100; // distance over which to fade
+
+      // Left fog: 0 when at start, 1 when scrolled past threshold
+      const leftOpacity = scrollLeft <= threshold
+        ? 0
+        : Math.min((scrollLeft - threshold) / fadeDistance, 1);
+
+      // Right fog: 0 when at end, 1 when not near end
+      const distanceFromEnd = maxScroll - scrollLeft;
+      const rightOpacity = distanceFromEnd <= threshold
+        ? 0
+        : Math.min((distanceFromEnd - threshold) / fadeDistance, 1);
+
+      setFogOpacity({
+        left: leftOpacity,
+        right: rightOpacity,
+      });
+    };
+
+    el.addEventListener("scroll", handleScroll);
+    handleScroll(); // run once on mount
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
   return (
     <section className="py-8 px-4 sm:px-6 lg:px-12 bg-base-100">
@@ -183,33 +225,39 @@ export default function ProjectsSection({
         <div className="relative">
           <div
             ref={carouselRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-10 scrollbar-thin scrollbar-thumb-base-300 justify-center"
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pt-5 pb-10 scrollbar-thin scrollbar-thumb-base-300 scroll-px-4"
             style={{ scrollSnapType: "x mandatory" }}
           >
             {loading
               ? Array.from({ length: 3 }).map((_, i) => (
-                  <div
-                    key={`loading-${i}`}
-                    className="w-[260px] sm:w-[300px] flex-shrink-0 snap-center"
-                  >
-                    <ProjectCard loading={true} />
-                  </div>
-                ))
+                <div
+                  key={`loading-${i}`}
+                  className="w-[260px] sm:w-[300px] flex-shrink-0 snap-center"
+                >
+                  <ProjectCard loading={true} />
+                </div>
+              ))
               : filteredProjects.map((project, idx) => (
-                  <div
-                    key={`${project.id ?? idx}-${idx}`}
-                    className="w-[260px] sm:w-[300px] lg:w-[360px] flex-shrink-0 snap-center"
-                  >
-                    <ProjectCard project={project} />
-                  </div>
-                ))}
+                <div
+                  key={`${project.id ?? idx}-${idx}`}
+                  className="w-[260px] sm:w-[300px] lg:w-[360px] flex-shrink-0 snap-center"
+                >
+                  <ProjectCard project={project} />
+                </div>
+              ))}
           </div>
 
-          {/* Faded left overlay */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-base-100 to-transparent pointer-events-none" />
+          <div
+            className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-base-100 to-transparent pointer-events-none transition-opacity duration-500"
+            style={{ opacity: fogOpacity.left }}
+          />
+          <div
+            className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-base-100 to-transparent pointer-events-none transition-opacity duration-500"
+            style={{ opacity: fogOpacity.right }}
+          />
 
-          {/* Faded right overlay */}
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-base-100 to-transparent pointer-events-none" />
+
+
         </div>
       </div>
     </section>

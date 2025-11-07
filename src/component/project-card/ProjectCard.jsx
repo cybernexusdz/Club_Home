@@ -42,27 +42,29 @@ const ProjectCard = ({ project, loading = false }) => {
   const displayImage = imageURL || (images && images[0]) || "";
 
   return (
-    <div className="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 border border-base-300 group w-full h-full flex flex-col">
-      <figure className="relative h-40 sm:h-48 overflow-hidden bg-base-200 flex-shrink-0">
+    <div className="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 border border-base-300 group w-full h-full flex flex-col hover:-translate-y-2 hover:scale-[1.02]">
+      <figure className="relative h-40 sm:h-48 bg-base-200 flex-shrink-0 overflow-hidden rounded-t-xl">
         {displayImage ? (
           <>
             {!imageLoaded && !imageError && (
-              <div className="absolute inset-0 flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center justify-center bg-base-200">
                 <span className="loading loading-spinner loading-md sm:loading-lg text-primary"></span>
               </div>
             )}
-            +{" "}
+
             <img
               src={displayImage}
               alt={name}
               loading="lazy"
               decoding="async"
-              width={600} // pick a reasonable intrinsic size matching your layout
-              height={360} // keep aspect ratio consistent with CSS height (h-40 / h-48)
-              className={`w-full h-full object-cover transition-all duration-300 group-hover:scale-110 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+              width={600}
+              height={360}
+              className={`absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 ${imageLoaded ? "opacity-100" : "opacity-0"
+                }`}
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
             />
+
             {imageError && (
               <div className="absolute inset-0 flex items-center justify-center bg-base-200">
                 <div className="text-center text-base-content/50">
@@ -92,6 +94,7 @@ const ProjectCard = ({ project, loading = false }) => {
         )}
       </figure>
 
+
       <div className="card-body p-4 sm:p-6 flex flex-col flex-grow">
         <h2 className="card-title text-base sm:text-lg text-base-content flex-wrap gap-2">
           <span className="break-words">{name}</span>
@@ -107,22 +110,46 @@ const ProjectCard = ({ project, loading = false }) => {
         </p>
 
         {technologies && technologies.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mt-3 sm:mt-2">
-            {technologies.slice(0, 3).map((tech, index) => (
-              <span
-                key={index}
-                className="badge badge-outline text-[0.65rem] sm:text-xs px-2 py-[2px] sm:px-3 sm:py-1 text-base-content/80 font-medium rounded-md"
-              >
-                {tech}
-              </span>
-            ))}
-            {technologies.length > 3 && (
-              <span className="badge badge-ghost text-[0.65rem] sm:text-xs px-2 py-[2px] sm:px-3 sm:py-1 rounded-md">
-                +{technologies.length - 3}
+          <div className="flex flex-wrap gap-2 mt-3 sm:mt-2">
+            {technologies.slice(0, 4).map((tech, index) => {
+              const techIcons = {
+                react: "⚛️",
+                python: "🐍",
+                tensorflow: "🧠",
+                java: "☕",
+                sqlite: "💾",
+                tailwindcss: "🌊",
+                vite: "⚡",
+                javascript: "🟨",
+                typescript: "🟦",
+                html: "📄",
+                css: "🎨",
+                iot: "📡",
+                raspberrypi: "🍓",
+              };
+
+              const normalized = tech.toLowerCase().replace(/\s+/g, "");
+              const icon = techIcons[normalized] || "💡";
+
+              return (
+                <span
+                  key={index}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 text-base-content/80 backdrop-blur-sm border border-base-300 hover:from-primary/30 hover:to-secondary/30 transition-all duration-300"
+                >
+                  <span className="text-sm">{icon}</span>
+                  <span className="capitalize">{tech}</span>
+                </span>
+              );
+            })}
+
+            {technologies.length > 4 && (
+              <span className="px-3 py-1.5 text-xs font-semibold rounded-full bg-base-200 text-base-content/70 border border-base-300">
+                +{technologies.length - 4}
               </span>
             )}
           </div>
         )}
+
 
         <div className="flex items-center gap-3 sm:gap-4 mt-2 text-xs text-base-content/60">
           {contributors > 0 && (
