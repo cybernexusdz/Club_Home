@@ -40,32 +40,32 @@ const Header = () => {
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo */}
         <div className="w-auto h-12">
-          <Logo className="w-full h-full fill-current text-textPrimary"/>
-        </div> 
+          <Logo className="w-full h-full fill-current text-textPrimary" />
+        </div>
 
         {/* Right-side controls */}
         <div className="flex items-center gap-3">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-6">
+            <button className="text-textPrimary hover:text-primary transition">
+              Home
+            </button>
+            <button className="text-textPrimary hover:text-primary transition">
+              Team
+            </button>
+            <button className="text-textPrimary hover:text-primary transition">
+              Events
+            </button>
+            <button className="text-textPrimary hover:text-primary transition">
+              Blogs
+            </button>
+            <button className="text-textPrimary hover:text-primary transition">
+              Projects
+            </button>
+          </nav>
+
           <ToggleTheme />
         </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6">
-          <button className="text-textPrimary hover:text-primary transition">
-            Home
-          </button>
-          <button className="text-textPrimary hover:text-primary transition">
-            Team
-          </button>
-          <button className="text-textPrimary hover:text-primary transition">
-            Events
-          </button>
-          <button className="text-textPrimary hover:text-primary transition">
-            Blogs
-          </button>
-          <button className="text-textPrimary hover:text-primary transition">
-            Projects
-          </button>
-        </nav>
 
         {/* Mobile Menu Button */}
         <button

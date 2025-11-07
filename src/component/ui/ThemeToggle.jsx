@@ -42,10 +42,9 @@ export default function ThemeToggle() {
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-primary flex items-center gap-2"
+        className="btn btn-square bg-transparent border-none flex items-center gap-2"
       >
         {current.icon}
-        <span>{current.label}</span>
       </div>
 
       {/* Dropdown menu with all themes */}
