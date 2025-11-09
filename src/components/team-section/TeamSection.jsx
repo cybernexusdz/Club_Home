@@ -3,67 +3,73 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import ProfileCard from "./ProfileCard";
 
 export default function TeamSection() {
-  const [currentIndex, setCurrentIndex] = useState(2);
+  const [currentIndex, setCurrentIndex] = useState(3);
 
-  const teamMembers = [
+  const teamMembers = [ 
     {
       id: 1,
-      name: "Javi A. Torres",
-      role: "Full Stack Developer",
+      name: "Hafid",
+      role: "Human Resources",
       image: "/user01.png",
     },
     {
       id: 2,
-      name: "Sarah Johnson",
-      role: "UI/UX Designer",
+      name: "Hakim Ait Nouri",
+      role: "Developement Lead",
       image: "/user01.png",
-    },
+    }, 
     {
       id: 3,
-      name: "Michael Chen",
-      role: "Backend Engineer",
-      image: "/user01.png",
-    },
+      name: "Kamel AB",
+      role: "Video Editor",
+      image: "/user04.png",
+    }, 
     {
       id: 4,
-      name: "Emma Rodriguez",
-      role: "Frontend Developer",
-      image: "/user01.png",
-    },
+      name: "Catrina",
+      role: "Leader",
+      image: "/user03.png",
+    }, 
     {
       id: 5,
-      name: "Alex Morgan",
-      role: "DevOps Engineer",
-      image: "/user01.png",
+      name: "Sofiane Dex",
+      role: "Perisdent of Dortmund",
+      image: "/user02.png",
     },
     {
       id: 6,
-      name: "Lisa Park",
-      role: "Product Manager",
+      name: "Kadi Smith",
+      role: "Developer",
       image: "/user01.png",
     },
     {
       id: 7,
-      name: "James Wilson",
-      role: "Data Scientist",
+      name: "Mouhamed Bachir",
+      role: "Blockchain Developer",
       image: "/user01.png",
     },
     {
       id: 8,
-      name: "Sofia Garcia",
-      role: "QA Engineer",
+      name: "Aziz Ben",
+      role: "CEO Facebook",
       image: "/user01.png",
-    },
+    }, 
     {
       id: 9,
-      name: "David Kumar",
-      role: "Mobile Developer",
+      name: "Samadoo",
+      role: "Ai Specialist",
       image: "/user01.png",
     },
     {
       id: 10,
-      name: "Nina Patel",
-      role: "Security Specialist",
+      name: "法拉",
+      role: "Media Manager",
+      image: "/user03.png",
+    },
+    {
+      id: 11,
+      name: "Adda Hadi",
+      role: "Human Resources",
       image: "/user01.png",
     },
   ];
@@ -176,7 +182,7 @@ export default function TeamSection() {
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-2 mt-4">
             {teamMembers.map((_, index) => (
               <button
                 key={index}
