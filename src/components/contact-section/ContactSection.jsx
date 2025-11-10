@@ -168,7 +168,7 @@ export default function ContactSection() {
             {/* Google Maps Embed */}
             <div className="w-full h-[400px] rounded-xl overflow-hidden border-2 border-base-content/10">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.8!2d1.3166!3d35.3708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x127db8c3b3b3b3b3%3A0x1234567890abcdef!2sUniversit%C3%A9%20Ibn%20Khaldoun%20Tiaret!5e0!3m2!1sen!2sdz!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2736.4522640683!2d1.3209439433091803!3d35.350471531917535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1286d1b08df59eab%3A0xd7ba2589aab1d516!2z2YPZhNmK2Kkg2KfZhNix2YrYp9i22YrYp9iqINmIINin2YTYp9i52YTYp9mFINin2YTYotmE2Yo!5e0!3m2!1sen!2sdz!4v1762766791505!5m2!1sen!2sdz"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
