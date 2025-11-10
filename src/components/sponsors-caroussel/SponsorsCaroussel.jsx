@@ -27,7 +27,7 @@ export default function SponsorsSection({
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -35,8 +35,9 @@ export default function SponsorsSection({
   }, []);
 
   const list = useMemo(
-    () => (Array.isArray(sponsors) && sponsors.length ? sponsors : defaultSponsors),
-    [sponsors]
+    () =>
+      Array.isArray(sponsors) && sponsors.length ? sponsors : defaultSponsors,
+    [sponsors],
   );
 
   // helper to open a link in a new tab (used by keyboard Enter/Space handlers)
@@ -68,8 +69,9 @@ export default function SponsorsSection({
 
       <div className="max-w-7xl mx-auto w-full space-y-8 relative z-10">
         <div
-          className={`text-center space-y-3 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+          className={`text-center space-y-3 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-full text-primary text-sm font-semibold border border-primary/20 shadow-md">
             <Handshake className="w-4 h-4 animate-pulse" />
@@ -98,8 +100,11 @@ export default function SponsorsSection({
               </div>
             ) : (
               <div
-                className={`grid gap-6 ${list.length === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
-                  }`}
+                className={`grid gap-6 ${
+                  list.length === 1
+                    ? "grid-cols-1"
+                    : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+                }`}
               >
                 {list.map((s) => (
                   <div
@@ -116,7 +121,11 @@ export default function SponsorsSection({
                       className="flex flex-col items-center w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/30 rounded"
                     >
                       <div className="w-44 h-28 sm:w-56 sm:h-36 flex items-center justify-center bg-white/6 rounded-md shadow-sm p-4">
-                        <img src={s.logo} alt={s.name} className="max-h-full max-w-full object-contain" />
+                        <img
+                          src={s.logo}
+                          alt={s.name}
+                          className="max-h-full max-w-full object-contain"
+                        />
                       </div>
 
                       <div className="mt-4 text-lg sm:text-base font-semibold text-base-content/90">
@@ -168,4 +177,3 @@ export default function SponsorsSection({
     </section>
   );
 }
-
