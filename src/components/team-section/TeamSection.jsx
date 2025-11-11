@@ -16,7 +16,7 @@ export default function TeamSection() {
     },
     {
       id: 2,
-      name: "Hakim Ait Nouri",
+      name: "Hakim Ait Abderrahim",
       role: "Developement Lead",
       image: "/user01.png",
     },
