@@ -4,7 +4,21 @@
     "subtitle": "ابق على اطلاع بآخر الأخبار والمقالات من CYBERNEXUS",
     "clubNews": "أخبار النادي",
     "readMore": "اقرأ المزيد",
+    "openDayTitle": "يوم الترحيب بـ CYBER NEXUS",
+    "openDayDate": "18 نوفمبر 2025",
+    "openDayDescription": "انضم إلينا في يوم الترحيب! اكتشف ما يقدمه CYBERNEXUS، قابل عشاق التكنولوجيا، وكن جزءًا من مجتمعنا المتنامي. مرحبًا بك في المستوى التالي - لنشكل المستقبل معًا.",
     "articles": [
+      {
+        "id": 4,
+        "title": "لعبة معركة السفن",
+        "category": "ألعاب",
+        "author": "فريق الألعاب",
+        "date": "25 جانفي",
+        "excerpt": "العب لعبة معركة السفن التفاعلية! تحدى الذكاء الاصطناعي واختبر مهاراتك الاستراتيجية.",
+        "imageKey": "shipbotImage",
+        "tagColor": "bg-blue-500",
+        "link": "/shipgame"
+      },
       {
         "id": 1,
         "title": "مرحباً بكم في CYBERNEXUS",
@@ -13,7 +27,7 @@
         "date": "18 جانفي",
         "excerpt": "نحن متحمسون للإعلان عن إطلاق موقعنا الإلكتروني الجديد ومنصة المجتمع.",
         "imageKey": "image1",
-        "tagColor": "bg-purple-500"
+        "tagColor": "bg-blue-500"
       },
       {
         "id": 2,
@@ -33,7 +47,7 @@
         "date": "22 جانفي",
         "excerpt": "تحقق من أحدث مشاريعنا وتعاوناتنا مع شركاء الصناعة.",
         "imageKey": "image1",
-        "tagColor": "bg-green-500"
+        "tagColor": "bg-blue-500"
       }
     ]
   }

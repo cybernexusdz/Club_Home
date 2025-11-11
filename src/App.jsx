@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import Footer from "./component/Footer";
 import Header from "./component/Header";
 import HeroSection from "./component/hero-section/HeroSection";
@@ -12,6 +13,18 @@ function App() {
       <BlogSection languageCode="en" />
       <Footer />
     </div>
+=======
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ShipGame from "./pages/ShipGame";
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/shipgame" element={<ShipGame />} />
+    </Routes>
+>>>>>>> Stashed changes
   );
 }
 
