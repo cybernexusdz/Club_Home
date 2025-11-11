@@ -4,7 +4,21 @@
     "subtitle": "Stay updated with the latest news and articles from CYBERNEXUS",
     "clubNews": "Club News",
     "readMore": "Read More",
+    "openDayTitle": "CYBER NEXUS Welcome Day",
+    "openDayDate": "November 18, 2025",
+    "openDayDescription": "Join us for our Welcome Day event! Discover what CYBERNEXUS has to offer, meet fellow tech enthusiasts, and be part of our growing community. Welcome to the next level - let's shape the future together.",
     "articles": [
+      {
+        "id": 4,
+        "title": "Battleship Game",
+        "category": "Games",
+        "author": "Kamel Abada",
+        "date": "11 november 2025",
+        "excerpt": "Play our interactive Battleship game! Challenge the AI and test your strategic skills.",
+        "imageKey": "shipbotImage",
+        "tagColor": "bg-blue-500",
+        "link": "/shipgame"
+      },
       {
         "id": 1,
         "title": "Welcome to CYBERNEXUS",
@@ -13,7 +27,7 @@
         "date": "18 January",
         "excerpt": "We're excited to announce the launch of our new website and community platform.",
         "imageKey": "image1",
-        "tagColor": "bg-purple-500"
+        "tagColor": "bg-blue-500"
       },
       {
         "id": 2,
@@ -33,7 +47,7 @@
         "date": "22 January",
         "excerpt": "Check out our latest projects and collaborations with industry partners.",
         "imageKey": "image1",
-        "tagColor": "bg-green-500"
+        "tagColor": "bg-blue-500"
       }
     ]
   }
