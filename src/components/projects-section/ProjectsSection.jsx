@@ -85,7 +85,6 @@ export default function ProjectsSection({
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState(ALL_TAG);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   const cardsContainerRef = useRef(null);
   const touchStartX = useRef(0);
@@ -160,26 +159,7 @@ export default function ProjectsSection({
     setCurrentIndex(0);
   }, [activeTag, query]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 },
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  
 
   const getCardStyle = (index) => {
     const diff = index - currentIndex;
@@ -229,18 +209,18 @@ export default function ProjectsSection({
       className="min-h-screen py-12 px-4 sm:px-6 lg:px-10 bg-gradient-to-b from-base-100 via-base-200/30 to-base-100 relative overflow-hidden flex items-center"
     >
       {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
         <div
           className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse"
           style={{ animationDelay: "1s" }}
         ></div>
-      </div>
+      </div> */}
 
       <div className="max-w-7xl mx-auto w-full space-y-8 relative z-10">
         {/* Header */}
         <div
-          className={`text-center space-y-3 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`text-center space-y-3 transition-all duration-1000 `}
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-full text-primary text-sm font-semibold border border-primary/20 shadow-md">
             <Sparkles className="w-4 h-4 animate-pulse" />
@@ -264,7 +244,7 @@ export default function ProjectsSection({
 
         {/* Stats */}
         <div
-          className={`flex items-center justify-center gap-6 sm:gap-10 transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`flex items-center justify-center gap-6 sm:gap-10 transition-all duration-1000 delay-200 `}
         >
           <div className="text-center group">
             <div className="flex items-center justify-center gap-2 mb-1">
@@ -380,7 +360,7 @@ export default function ProjectsSection({
 
         {/* Search and Filter Bar */}
         <div
-          className={`flex flex-col sm:flex-row items-center justify-center gap-3 transition-all duration-1000 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`flex flex-col sm:flex-row items-center justify-center gap-3 transition-all duration-1000 delay-100 `}
         >
           <div className="relative w-full sm:w-72">
             <input
