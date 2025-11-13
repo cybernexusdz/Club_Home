@@ -98,7 +98,7 @@ const HeroSection = ({ theme }) => {
         className="absolute top-[100px] -left-[100px] rotate-45 w-[350px]"
       >
         <img
-          src={robot === "boy" ? "./public/boy.png" : "./public/girl.png"}
+          src={robot === "boy" ? "/boy.png" : "/girl.png"}
           className="w-full"
           alt="Robot"
         />
