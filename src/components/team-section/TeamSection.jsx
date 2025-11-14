@@ -15,6 +15,7 @@ import {
   Monitor,
 } from "lucide-react";
 import ProfileCard from "./ProfileCard";
+import useGlitchAnimation from "../../hooks/useGlitchAnimation";
 
 const teamMembers = [
   {
@@ -751,6 +752,7 @@ export default function TeamSection() {
     teamMembers.findIndex((m) => m.role === "Club Owner"),
   );
   const [isMobile, setIsMobile] = useState(false);
+  const { ref: glitchRef } = useGlitchAnimation({ repeatDelay: 3 });
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const isDragging = useRef(false);
@@ -825,7 +827,10 @@ export default function TeamSection() {
         <div className="text-center space-y-4">
           <h2 className="text-4xl sm:text-5xl font-bold text-base-content">
             Meet Our{" "}
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient">
+            <span
+              ref={glitchRef}
+              className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient"
+            >
               Team
             </span>
           </h2>
