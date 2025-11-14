@@ -111,10 +111,10 @@ const Navbar = ({
           ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
         `}
       >
-        <div className="container mx-auto flex items-center justify-between p-4">
-          {/* Logo */}
+        <div className="container mx-auto flex items-center justify-between px-4 py-3 sm:px-6">
+          {/* Logo - Smaller on mobile */}
           <div
-            className="w-auto h-12 cursor-pointer transition-transform hover:scale-110"
+            className="w-auto h-8 sm:h-10 cursor-pointer transition-transform hover:scale-105 flex items-center"
             onClick={() => handleNavClick("Hero")}
           >
             <Logo className="w-full h-full fill-current text-primary" />
@@ -170,15 +170,17 @@ const Navbar = ({
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <ToggleTheme theme={theme} setTheme={setTheme} />
+          {/* Mobile Menu Button - Better spacing and sizing */}
+          <div className="md:hidden flex items-center gap-3">
+            <div className="scale-90">
+              <ToggleTheme theme={theme} setTheme={setTheme} />
+            </div>
             <button
-              className="text-base-content hover:text-primary transition p-2 hover:bg-primary/10 rounded-lg relative z-50"
+              className="text-base-content hover:text-primary transition p-2 hover:bg-primary/10 rounded-lg relative z-50 flex items-center justify-center w-10 h-10"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
-              {menuOpen ? <X size={28} /> : <Menu size={28} />}
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -206,9 +208,9 @@ const Navbar = ({
           `}
         >
           {/* Menu Content */}
-          <nav className="flex flex-col h-full pt-24 px-6">
+          <nav className="flex flex-col h-full pt-20 px-4">
             {/* Navigation Items */}
-            <div className="flex-1 space-y-2">
+            <div className="flex-1 space-y-1">
               {navItems.map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -216,8 +218,8 @@ const Navbar = ({
                     key={item.name}
                     onClick={() => handleNavClick(item.name)}
                     className={`
-                      w-full text-left px-6 py-4 rounded-xl font-semibold text-lg
-                      transition-all duration-300 transform flex items-center gap-4
+                      w-full text-left px-4 py-3 rounded-xl font-semibold text-base
+                      transition-all duration-300 transform flex items-center gap-3
                       ${
                         activeSection === item.name
                           ? "bg-primary text-white shadow-lg scale-105"
@@ -230,7 +232,7 @@ const Navbar = ({
                     }}
                     aria-label={`Navigate to ${item.name}`}
                   >
-                    <Icon size={24} />
+                    <Icon size={20} />
                     <span className="flex-1">{item.name}</span>
                     {activeSection === item.name && (
                       <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
@@ -242,13 +244,13 @@ const Navbar = ({
 
             {/* Footer Info */}
             <div
-              className={`py-6 border-t border-primary/20 transition-all duration-500
+              className={`py-4 border-t border-primary/20 transition-all duration-500
                 ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}
               `}
               style={{ transitionDelay: menuOpen ? "250ms" : "0ms" }}
             >
               <p className="text-sm text-base-content/60 text-center">
-                © 2025 Your Portfolio
+                © 2025 CyberNexus
               </p>
             </div>
           </nav>

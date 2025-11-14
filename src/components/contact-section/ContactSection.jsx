@@ -84,7 +84,7 @@ export default function ContactSection() {
         });
       }
 
-      // Animate form container
+      // Animate form container - remove x animation on mobile
       if (formContainerRef.current) {
         gsap.from(formContainerRef.current, {
           scrollTrigger: {
@@ -95,12 +95,13 @@ export default function ContactSection() {
             markers: false,
           },
           opacity: 0,
-          x: -50,
+          x: window.innerWidth > 768 ? -50 : 0, // Only animate x on desktop
+          y: window.innerWidth <= 768 ? 30 : 0, // Animate y on mobile
           duration: 1,
         });
       }
 
-      // Animate map container
+      // Animate map container - remove x animation on mobile
       if (mapContainerRef.current) {
         gsap.from(mapContainerRef.current, {
           scrollTrigger: {
@@ -111,7 +112,8 @@ export default function ContactSection() {
             markers: false,
           },
           opacity: 0,
-          x: 50,
+          x: window.innerWidth > 768 ? 50 : 0, // Only animate x on desktop
+          y: window.innerWidth <= 768 ? 30 : 0, // Animate y on mobile
           duration: 1,
         });
       }
@@ -121,13 +123,17 @@ export default function ContactSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 px-4 bg-base-100">
-      <div className="max-w-7xl mx-auto">
+    <section
+      ref={sectionRef}
+      className="py-16 px-4 bg-base-100 overflow-hidden" // Added overflow-hidden
+      id="Contact" // Added ID for navigation
+    >
+      <div className="max-w-7xl mx-auto w-full">
         {/* Section Header */}
-        <div ref={headerRef} className=" mb-12 px-4">
+        <div ref={headerRef} className="mb-12 px-4 w-full">
           <h2 className="text-4xl sm:text-5xl font-bold text-base-content text-center">
             Get In
-            <span className=" ml-5 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient">
+            <span className="ml-2 sm:ml-5 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient">
               Touch
             </span>
           </h2>
@@ -138,17 +144,17 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start w-full">
           {/* Contact Form */}
           <div
             ref={formContainerRef}
-            className="bg-accent rounded-2xl p-8 shadow-lg"
+            className="bg-accent rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg w-full"
           >
-            <h3 className="text-2xl font-bold text-base-content mb-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-base-content mb-6">
               Send us a message
             </h3>
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Email Input */}
               <div>
                 <label
@@ -158,7 +164,7 @@ export default function ContactSection() {
                   Your Email
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-base-content/50 w-5 h-5" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-base-content/50 w-4 h-4 sm:w-5 sm:h-5" />
                   <input
                     type="email"
                     id="email"
@@ -166,7 +172,7 @@ export default function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="you@example.com"
-                    className="w-full pl-12 pr-4 py-3 bg-base-100 border-2 border-base-content/10 rounded-xl focus:border-primary focus:outline-none transition-colors text-base-content"
+                    className="w-full pl-10 sm:pl-12 pr-4 py-3 bg-base-100 border-2 border-base-content/10 rounded-xl focus:border-primary focus:outline-none transition-colors text-base-content text-sm sm:text-base"
                   />
                 </div>
               </div>
@@ -184,9 +190,9 @@ export default function ContactSection() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="6"
+                  rows="5"
                   placeholder="Tell us what you're interested in..."
-                  className="w-full px-4 py-3 bg-base-100 border-2 border-base-content/10 rounded-xl focus:border-primary focus:outline-none transition-colors resize-none text-base-content"
+                  className="w-full px-4 py-3 bg-base-100 border-2 border-base-content/10 rounded-xl focus:border-primary focus:outline-none transition-colors resize-none text-base-content text-sm sm:text-base"
                 />
               </div>
 
@@ -194,7 +200,7 @@ export default function ContactSection() {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting || !formData.email || !formData.message}
-                className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 sm:py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
               >
                 {isSubmitting ? (
                   <>
@@ -203,7 +209,7 @@ export default function ContactSection() {
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                     Send Message
                   </>
                 )}
@@ -211,7 +217,7 @@ export default function ContactSection() {
 
               {/* Success Message */}
               {submitStatus === "success" && (
-                <div className="bg-success/10 border-2 border-success text-success px-4 py-3 rounded-xl text-center font-medium">
+                <div className="bg-success/10 border-2 border-success text-success px-4 py-3 rounded-xl text-center font-medium text-sm sm:text-base">
                   ✓ Message sent successfully! We'll get back to you soon.
                 </div>
               )}
@@ -221,15 +227,15 @@ export default function ContactSection() {
           {/* Map */}
           <div
             ref={mapContainerRef}
-            className="bg-accent rounded-2xl p-8 shadow-lg"
+            className="bg-accent rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg w-full"
           >
-            <h3 className="text-2xl font-bold text-base-content mb-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-base-content mb-6">
               Our Location
             </h3>
 
             <div className="mb-4 flex items-start gap-3 text-base-content/80">
-              <MapPin className="w-5 h-5 mt-1 text-primary flex-shrink-0" />
-              <div>
+              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-1 text-primary flex-shrink-0" />
+              <div className="text-sm sm:text-base">
                 <p className="font-medium text-base-content">
                   Ibn Khaldoun University
                 </p>
@@ -239,7 +245,7 @@ export default function ContactSection() {
             </div>
 
             {/* Google Maps Embed */}
-            <div className="w-full h-[400px] rounded-xl overflow-hidden border-2 border-base-content/10">
+            <div className="w-full h-[300px] sm:h-[350px] lg:h-[400px] rounded-xl overflow-hidden border-2 border-base-content/10">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2736.4522640683!2d1.3209439433091803!3d35.350471531917535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1286d1b08df59eab%3A0xd7ba2589aab1d516!2z2YPZhNmK2Kkg2KfZhNix2YrYp9i22YrYp9iqINmIINin2YTYp9i52YTYp9mFINin2YTYotmE2Yo!5e0!3m2!1sen!2sdz!4v1762766791505!5m2!1sen!2sdz"
                 width="100%"
@@ -249,6 +255,7 @@ export default function ContactSection() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Ibn Khaldoun University Tiaret Location"
+                className="w-full h-full"
               />
             </div>
           </div>
@@ -257,12 +264,3 @@ export default function ContactSection() {
     </section>
   );
 }
-
-<div className=" mb-12 px-4">
-  <h2 className="text-4xl font-bold text-base-content mb-4">Get In Touch</h2>
-  <p className=" text-lg text-start text-content/70  ">
-    Interested in partnering with CYBERNEXUS? We welcome collaborations with
-    companies and organizations looking to support tech innovation and student
-    development.
-  </p>
-</div>;

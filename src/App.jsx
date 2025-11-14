@@ -32,22 +32,23 @@ function App() {
         <HeroSection theme={theme} />
       </section>
       <Separator />
-      <section id="Team Members">
-        <TeamSection languageCode="en" />
-      </section>
-
-      <Separator />
 
       {/* Blog Section */}
       <section id="Blog">
         <BlogSection languageCode="en" />
       </section>
+
       <Separator />
       {/* Projects Section */}
+      <section id="Team Members">
+        <TeamSection languageCode="en" />
+      </section>
 
+      <Separator />
       <section id="Projects">
         <ProjectsSection />
       </section>
+
       <Separator />
       {/* Sponsors Carousel */}
       <section id="Sponsors">
