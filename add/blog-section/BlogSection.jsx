@@ -1,16 +1,12 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, ChevronRight, ArrowRight, Sparkles, Zap } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import useGlitchAnimation from "../../hooks/useGlitchAnimation";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import image1 from "./images/cc62374db4003c3af0243e519cfa96f159ecb65a (1).jpg";
 import image2 from "./images/6354f8b78b2e2e6e1d0f1d3fa5b5074050fb3647.png";
 import openDayImage from "./images/photo_5791963918254148386_y (1).jpg";
 import shipbotImage from "./images/shipbot.png";
 import en from "../locales/en.json";
-
-gsap.registerPlugin(ScrollTrigger);
+import ar from "../locales/ar.json";
 
 const BlogSection = ({ languageCode = "en" }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,14 +15,9 @@ const BlogSection = ({ languageCode = "en" }) => {
   const navigate = useNavigate();
   const carouselRef = useRef(null);
   const autoPlayRef = useRef(null);
-  const sectionRef = useRef(null);
-  const headerRef = useRef(null);
-  const clubNewsRef = useRef(null);
-  const articlesRef = useRef(null);
-  const { ref: glitchRef } = useGlitchAnimation({ repeatDelay: 3 });
 
   const t = useMemo(() => {
-    const dict = { en };
+    const dict = { en, ar };
 
     return dict[languageCode] || dict.en;
   }, [languageCode]);
@@ -126,62 +117,6 @@ const BlogSection = ({ languageCode = "en" }) => {
     setIsAutoPlaying(true);
   };
 
-  // GSAP animations
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate header section
-      if (headerRef.current) {
-        gsap.from(headerRef.current.children, {
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "top 20%",
-            scrub: 1,
-            markers: false,
-          },
-          opacity: 0,
-          y: 50,
-          stagger: 0.2,
-          duration: 1,
-        });
-      }
-
-      // Animate club news card
-      if (clubNewsRef.current) {
-        gsap.from(clubNewsRef.current, {
-          scrollTrigger: {
-            trigger: clubNewsRef.current,
-            start: "top 75%",
-            end: "top 25%",
-            scrub: 1,
-            markers: false,
-          },
-          opacity: 0,
-          y: 50,
-          duration: 1,
-        });
-      }
-
-      // Animate articles section
-      if (articlesRef.current) {
-        gsap.from(articlesRef.current, {
-          scrollTrigger: {
-            trigger: articlesRef.current,
-            start: "top 70%",
-            end: "top 30%",
-            scrub: 1,
-            markers: false,
-          },
-          opacity: 0,
-          y: 40,
-          duration: 1,
-        });
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   // Article Card Component
   const ArticleCard = ({ article }) => (
     <div className="bg-accent/60 backdrop-blur-sm rounded-lg overflow-hidden border border-secondary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 h-full flex flex-col">
@@ -229,11 +164,6 @@ const BlogSection = ({ languageCode = "en" }) => {
               <span>Play</span>
               <ArrowRight size={16} />
             </>
-          ) : article.id === 1 ? (
-            <>
-              <span>Join Now</span>
-              <ArrowRight size={16} />
-            </>
           ) : (
             <>
               {t.blog.readMore}
@@ -247,7 +177,6 @@ const BlogSection = ({ languageCode = "en" }) => {
 
   return (
     <section
-      ref={sectionRef}
       className="py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 relative"
       dir={languageCode === "ar" ? "rtl" : "ltr"}
     >
@@ -291,48 +220,19 @@ const BlogSection = ({ languageCode = "en" }) => {
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Header */}
 
-        <div
-          ref={headerRef}
-          className="text-center space-y-3 transition-all duration-1000 mb-8 sm:mb-10 md:mb-12"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-full text-primary text-sm font-semibold border border-primary/20 shadow-md">
-            <Sparkles className="w-4 h-4 animate-pulse" />
-            <span>{t.blog.latestUpdates || "Latest Updates"}</span>
-            <Zap className="w-4 h-4" />
-          </div>
-
-          <h2 className="text-4xl sm:text-5xl font-bold text-base-content">
-            {t.blog.title.includes("&") ? (
-              <>
-                {t.blog.title.split("&")[0]}
-                <span
-                  ref={glitchRef}
-                  className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient"
-                >
-                  &{t.blog.title.split("&")[1]}
-                </span>
-              </>
-            ) : (
-              <>
-                {t.blog.title.split(" ")[0]}{" "}
-                <span
-                  ref={glitchRef}
-                  className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient"
-                >
-                  {t.blog.title.split(" ").slice(1).join(" ")}
-                </span>
-              </>
-            )}
+        <div className="mb-8 sm:mb-10 md:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-info bg-clip-text text-transparent">
+            {t.blog.title}
           </h2>
 
-          <p className="text-base sm:text-lg text-base-content/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base-content/70 text-base sm:text-lg">
             {t.blog.subtitle}
           </p>
         </div>
 
         {/* Main Club News Card */}
 
-        <div ref={clubNewsRef} className="mb-12 sm:mb-14 md:mb-16">
+        <div className="mb-12 sm:mb-14 md:mb-16">
           <div className="bg-accent/60 backdrop-blur-sm rounded-lg overflow-hidden border border-secondary/20 hover:border-primary/50 transition-all duration-300">
             <div className="flex flex-col md:flex-row">
               {/* Left Side - Open Day Image */}
@@ -361,6 +261,12 @@ const BlogSection = ({ languageCode = "en" }) => {
                     {t.blog.openDayDescription}
                   </p>
                 </div>
+
+                <button className="self-start sm:self-end bg-gradient-to-r from-primary to-info text-base-100 px-4 sm:px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 flex items-center gap-2 border border-primary/30">
+                  {t.blog.readMore}
+
+                  <ArrowRight size={18} />
+                </button>
               </div>
             </div>
           </div>
@@ -368,7 +274,6 @@ const BlogSection = ({ languageCode = "en" }) => {
 
         {/* Blog Articles Section */}
         <div
-          ref={articlesRef}
           className="relative"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}

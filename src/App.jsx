@@ -7,7 +7,9 @@ import ProjectsSection from "./components/projects-section/ProjectsSection";
 import Separator from "./components/ui/Separator";
 import ContactSection from "./components/contact-section/ContactSection";
 import TeamSection from "./components/team-section/TeamSection";
+import ShipGame from "./components/shipgame/ShipGame";
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [theme, setTheme] = useState(
@@ -21,47 +23,58 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-navyDark to-purpleDeep">
-      <Navbar
-        theme={theme}
-        setTheme={setTheme}
-        handleScrollComponent={handleScrollComponent}
+    <Routes>
+      <Route
+        path="/shipgame"
+        element={<ShipGame />}
       />
-      {/* Hero Section */}
-      <section id="Hero">
-        <HeroSection theme={theme} />
-      </section>
-      <Separator />
+      <Route
+        path="/"
+        element={
+          <div className="min-h-screen bg-gradient-to-r from-navyDark to-purpleDeep">
+            <Navbar
+              theme={theme}
+              setTheme={setTheme}
+              handleScrollComponent={handleScrollComponent}
+            />
+            {/* Hero Section */}
+            <section id="Hero">
+              <HeroSection theme={theme} />
+            </section>
+            <Separator />
 
-      {/* Blog Section */}
-      <section id="Blog">
-        <BlogSection languageCode="en" />
-      </section>
-      <Separator />
-      {/* Projects Section */}
-      <section id="Team Members">
-        <TeamSection languageCode="en" />
-      </section>
+            {/* Blog Section */}
+            <section id="Blog">
+              <BlogSection languageCode="en" />
+            </section>
+            <Separator />
+            {/* Projects Section */}
+            <section id="Team Members">
+              <TeamSection languageCode="en" />
+            </section>
 
-      <Separator />
-      <section id="Projects">
-        <ProjectsSection />
-      </section>
+            <Separator />
+            <section id="Projects">
+              <ProjectsSection />
+            </section>
 
-      <Separator />
-      {/* Sponsors Carousel */}
-      <section id="Sponsors">
-        <SponsorsCarousel />
-      </section>
-      <Separator />
-      <section id="Contact">
-        <ContactSection />
-      </section>
-      <Separator />
-      {/* Footer */}
+            <Separator />
+            {/* Sponsors Carousel */}
+            <section id="Sponsors">
+              <SponsorsCarousel />
+            </section>
+            <Separator />
+            <section id="Contact">
+              <ContactSection />
+            </section>
+            <Separator />
+            {/* Footer */}
 
-      <Footer />
-    </div>
+            <Footer />
+          </div>
+        }
+      />
+    </Routes>
   );
 }
 

@@ -4,14 +4,29 @@
     "subtitle": "Stay updated with the latest news and articles from CYBERNEXUS",
     "clubNews": "Club News",
     "readMore": "Read More",
+    "latestUpdates": "Latest Updates",
+    "openDayTitle": "Open Day",
+    "openDayDate": "📅 Tuesday, November 18, 2025 at 11:00 AM\n📍 Reading Hall",
+    "openDayDescription": "Join us for an exciting Open Day event where we welcome new members and showcase the vibrant CYBERNEXUS community! Discover our innovative projects, meet passionate developers, learn about upcoming workshops, and connect with like-minded tech enthusiasts. Whether you're interested in web development, AI, cybersecurity, or collaborative projects, this is your chance to explore what CYBERNEXUS has to offer and become part of our growing community.",
     "articles": [
+      {
+        "id": 4,
+        "title": "Battleship Game",
+        "category": "Game",
+        "author": "Kamel Abada",
+        "date": "8 November",
+        "excerpt": "Challenge yourself with our interactive Battleship game! Test your strategic thinking and have fun competing against our AI bot.",
+        "imageKey": "shipbotImage",
+        "tagColor": "bg-orange-500",
+        "link": "/shipgame"
+      },
       {
         "id": 1,
         "title": "Welcome to CYBERNEXUS",
         "category": "Announcement",
         "author": "Admin",
-        "date": "18 January",
-        "excerpt": "We're excited to announce the launch of our new website and community platform.",
+        "date": "1 November",
+        "excerpt": "Join our club and become part of an innovative tech community! We welcome passionate developers, students, and tech enthusiasts who want to collaborate on exciting projects, learn new skills, and grow together. Whether you're interested in web development, AI, cybersecurity, or open-source contributions, CYBERNEXUS provides the perfect platform to connect, create, and excel.",
         "imageKey": "image1",
         "tagColor": "bg-purple-500"
       },
