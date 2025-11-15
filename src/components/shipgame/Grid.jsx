@@ -57,8 +57,9 @@ function Grid({ grid, attacks, ships, type, onCellClick, disabled }) {
         // Ship is fully sunk - show ship's color
         style.backgroundColor = ship.color || "#8B0000";
       } else if (isHit) {
-        // Ship is hit but not sunk - show fire (handled by emoji)
-        style.backgroundColor = "#000000"; // Black background
+        // Ship is hit but not sunk - show fire background (red/orange gradient)
+        style.backgroundColor = "#FF4500"; // Orange-red fire color
+        style.background = "linear-gradient(135deg, #FF4500 0%, #FF6347 50%, #FF8C00 100%)";
       } else {
         // Ship not hit yet - show black
         style.backgroundColor = "#000000";
@@ -83,42 +84,39 @@ function Grid({ grid, attacks, ships, type, onCellClick, disabled }) {
     const position = `${row}-${col}`;
     const attack = attacks[position];
     const ship = getShipAtPosition(position);
-    const classes = ["grid-cell"];
-
-    if (attack) {
-      classes.push(attack.hit ? "hit" : "miss");
-    }
-
-    // For player grid, mark ship positions
+    
+    let baseClasses = "aspect-square flex items-center justify-center text-sm sm:text-base md:text-lg transition-all min-w-0 select-none rounded-sm box-border m-0 border border-base-content/30";
+    
+    // Base cell styling
     if (type === "player" && ship) {
-      classes.push("ship");
-      if (ship.sunk) {
-        classes.push("sunk");
+      // Don't add background class if ship is hit (we use inline style for fire effect)
+      if (!attack?.hit) {
+        baseClasses += " bg-base-content/80";
       }
-      // Add class for hit but not sunk
-      if (attack && attack.hit && !ship.sunk) {
-        classes.push("ship-hit");
-      }
+    } else if (attack?.hit) {
+      baseClasses += " bg-error/50";
+    } else if (attack && !attack.hit) {
+      baseClasses += " bg-base-content/15";
+    } else {
+      baseClasses += " bg-primary/15";
+    }
+    
+    // Hover state (only for bot grid, not disabled, not hit, not miss)
+    if (type === "bot" && !disabled && !attack) {
+      baseClasses += " hover:bg-primary/30 hover:border-primary/50 hover:scale-105 hover:z-10 hover:relative cursor-pointer";
+    } else if (disabled && type === "bot") {
+      baseClasses += " cursor-not-allowed opacity-70";
+    } else if (type === "player") {
+      baseClasses += " cursor-default";
+    } else {
+      baseClasses += " cursor-pointer";
     }
 
-    // For bot grid: mark ship positions only when fully sunk
-    if (type === "bot" && ship) {
-      if (ship.sunk) {
-        classes.push("ship");
-        classes.push("sunk");
-      }
-      // Ships remain hidden until fully sunk
-    }
-
-    if (disabled && type === "bot") {
-      classes.push("disabled");
-    }
-
-    return classes.join(" ");
+    return baseClasses;
   };
 
   return (
-    <div className="grid-container">
+    <div className="grid grid-cols-10 gap-0 w-full max-w-[400px] mx-auto p-2 bg-base-200/30 backdrop-blur-sm rounded-xl shadow-lg aspect-square transition-all">
       {Array.from({ length: GRID_SIZE }, (_, row) =>
         Array.from({ length: GRID_SIZE }, (_, col) => {
           const cellStyle = getCellStyle(row, col);
@@ -131,11 +129,7 @@ function Grid({ grid, attacks, ships, type, onCellClick, disabled }) {
               onClick={() =>
                 !disabled && type === "bot" && onCellClick?.(row, col)
               }
-              style={{
-                ...cellStyle,
-                cursor: disabled || type === "player" ? "default" : "pointer",
-                opacity: disabled && type === "bot" ? 0.7 : 1,
-              }}
+              style={cellStyle}
             >
               {getCellContent(row, col)}
             </div>

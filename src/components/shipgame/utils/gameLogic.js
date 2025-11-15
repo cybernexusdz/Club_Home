@@ -149,4 +149,3 @@ export function calculateBotAttack(botAttacks, botTargeting) {
 export function allShipsSunk(ships) {
   return ships.every((ship) => ship.sunk);
 }
-
