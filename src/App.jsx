@@ -24,10 +24,7 @@ function App() {
 
   return (
     <Routes>
-      <Route
-        path="/shipgame"
-        element={<ShipGame />}
-      />
+      <Route path="/shipgame" element={<ShipGame />} />
       <Route
         path="/"
         element={

@@ -1,6 +1,12 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, ChevronRight, ArrowRight, Sparkles, Zap } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  Sparkles,
+  Zap,
+} from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useGlitchAnimation from "../../hooks/useGlitchAnimation";
@@ -44,12 +50,13 @@ const BlogSection = ({ languageCode = "en" }) => {
   // Responsive items per view based on screen size
   useEffect(() => {
     const updateItemsPerView = () => {
-      const newItemsPerView = window.innerWidth < 768 
-        ? 1  // Mobile: show 1 item
-        : window.innerWidth < 1024 
-        ? 2  // Tablet: show 2 items
-        : 3; // Desktop: show 3 items
-      
+      const newItemsPerView =
+        window.innerWidth < 768
+          ? 1 // Mobile: show 1 item
+          : window.innerWidth < 1024
+            ? 2 // Tablet: show 2 items
+            : 3; // Desktop: show 3 items
+
       setItemsPerView(newItemsPerView);
       // Reset carousel index when screen size changes
       setCurrentIndex(0);
@@ -451,13 +458,15 @@ const BlogSection = ({ languageCode = "en" }) => {
               </>
             ) : (
               // Grid mode (itemsPerView or fewer articles)
-              <div className={`grid gap-4 sm:gap-6 px-2 sm:px-4 ${
-                itemsPerView === 1 
-                  ? "grid-cols-1" 
-                  : itemsPerView === 2 
-                  ? "grid-cols-1 md:grid-cols-2" 
-                  : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-              }`}>
+              <div
+                className={`grid gap-4 sm:gap-6 px-2 sm:px-4 ${
+                  itemsPerView === 1
+                    ? "grid-cols-1"
+                    : itemsPerView === 2
+                      ? "grid-cols-1 md:grid-cols-2"
+                      : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                }`}
+              >
                 {getCurrentViewArticles().map((article) => (
                   <div key={article.id}>
                     <ArticleCard article={article} />

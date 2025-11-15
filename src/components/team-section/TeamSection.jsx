@@ -744,7 +744,8 @@ const teamMembers = [
       animateBack: false,
       tiltStrength: 12,
     },
-  },{
+  },
+  {
     id: 11,
     name: "Amine Beridja",
     role: "Student + Developer",
@@ -756,8 +757,11 @@ const teamMembers = [
     iconBgColor: "bg-amber-500/20",
     iconBorderColor: "border-amber-500/50",
     socialLinks: [
-      { icon: Mail, label: "Email", href: "Email : aminemohamed0142@gmail.com" }
-  
+      {
+        icon: Mail,
+        label: "Email",
+        href: "Email : aminemohamed0142@gmail.com",
+      },
     ],
     backContent: (
       <div className="text-center space-y-3 p-4">
@@ -768,8 +772,9 @@ const teamMembers = [
         <p className="text-sm text-base-content/80">Student + Developer</p>
         <p className="text-xs text-base-content/70">L3</p>
         <p className="text-xs">
-          <a href="Email : aminemohamed0142@gmail.com ">Email : aminemohamed0142@gmail.com 
-</a>
+          <a href="Email : aminemohamed0142@gmail.com ">
+            Email : aminemohamed0142@gmail.com
+          </a>
         </p>
       </div>
     ),
@@ -786,7 +791,8 @@ const teamMembers = [
       animateBack: false,
       tiltStrength: 12,
     },
-  },{
+  },
+  {
     id: 12,
     name: "Tounssi Abdessamed",
     role: "Student ",
@@ -814,7 +820,9 @@ const teamMembers = [
         <p className="text-sm text-base-content/80">Student</p>
         <p className="text-xs text-base-content/70">M1 IA</p>
         <p className="text-xs">
-          <a href="mailto:bedouidenia25@gmail.com">Email:mcboosabdo@gmail.com</a>
+          <a href="mailto:bedouidenia25@gmail.com">
+            Email:mcboosabdo@gmail.com
+          </a>
         </p>
       </div>
     ),
