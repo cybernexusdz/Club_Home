@@ -1,0 +1,249 @@
+/* Core Animations */
+@keyframes gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes pulse-fast {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(var(--float-x, 50px)) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes grid-scroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 60px;
+  }
+}
+
+@keyframes circuit-flow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes data-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Utility Classes */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 1s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+.animate-scan {
+  animation: scan 2s linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Cyber Grid Backgrounds */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(var(--p), 0.15) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(var(--p), 0.15) 2px, transparent 2px);
+  background-size: 60px 60px;
+  animation: grid-scroll 25s linear infinite;
+}
+
+.cyber-grid-diagonal {
+  background-image:
+    linear-gradient(45deg, rgba(var(--s), 0.1) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(var(--s), 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-scroll 20s linear infinite reverse;
+}
+
+/* Circuit Lines */
+.circuit-line {
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--p), 0.3),
+    transparent
+  );
+  height: 2px;
+  animation: circuit-flow 8s linear infinite;
+}
+
+.circuit-line-1 {
+  top: 20%;
+  width: 60%;
+  left: -60%;
+}
+
+.circuit-line-2 {
+  top: 60%;
+  width: 70%;
+  right: -70%;
+  animation-delay: 2s;
+}
+
+.circuit-line-3 {
+  top: 80%;
+  width: 50%;
+  left: -50%;
+  animation-delay: 4s;
+}
+
+/* Data Particles */
+.data-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(var(--p), 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(var(--p), 0.8);
+  animation: float-up linear infinite;
+  --float-x: calc((var(--random, 0.5) - 0.5) * 200px);
+}
+
+/* Scanlines Effect */
+.scanlines {
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(var(--p), 0.05) 51%
+  );
+  background-size: 100% 6px;
+  animation: scanline 10s linear infinite;
+}
+
+.scanline-slow {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(var(--p), 0.5) 50%,
+    transparent 100%
+  );
+  background-size: 100% 80px;
+  animation: scanline 4s linear infinite;
+}
+
+/* Neon Glow Effects */
+.neon-glow {
+  box-shadow: 0 0 150px rgba(var(--p), 0.4);
+}
+
+.neon-border {
+  box-shadow:
+    0 0 15px rgba(var(--p), 0.4),
+    inset 0 0 15px rgba(var(--p), 0.2);
+}
+
+.neon-border-subtle {
+  box-shadow: 0 0 20px rgba(var(--p), 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.group:hover .neon-border-subtle {
+  box-shadow: 0 0 40px rgba(var(--p), 0.6);
+}
+
+/* Corner Brackets */
+.corner-bracket {
+  transition: all 0.3s ease;
+}
+
+.group:hover .corner-bracket {
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 5px rgba(var(--p), 0.8));
+  transform: scale(1.1);
+}
+
+/* Data Lines */
+.data-line {
+  animation: data-pulse 2s ease-in-out infinite;
+}
+
+/* Perspective for 3D effects */
+.perspective-1000 {
+  perspective: 1000px;
+}

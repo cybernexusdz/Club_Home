@@ -17,8 +17,6 @@ const Shuffle = ({
   ease = "power3.out",
   threshold = 0.1,
   rootMargin = "-100px",
-  tag = "p",
-  textAlign = "center",
   onShuffleComplete,
   shuffleTimes = 1,
   animationMode = "evenodd",

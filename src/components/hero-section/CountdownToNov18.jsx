@@ -1,5 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
+import {
+  CornerBrackets,
+  DataLine,
+  StatusIndicator,
+} from "../ui/CyberBackground";
 
 export default function CountdownToNov18() {
   const [daysLeft, setDaysLeft] = useState(0);
@@ -50,7 +55,7 @@ export default function CountdownToNov18() {
       ) {
         const tl = gsap.timeline();
 
-        // Glitch effect on change
+        // Enhanced glitch effect on change (from old code)
         tl
           // Initial glitch with RGB split
           .to(currentRef.current, {
@@ -146,7 +151,7 @@ export default function CountdownToNov18() {
     const prevDigits = String(prevValue).padStart(2, "0").split("");
     const cardRef = useRef(null);
 
-    // Add subtle card glitch when value changes
+    // Card glitch pulse when value changes (from old code)
     useEffect(() => {
       if (value !== prevValue && cardRef.current) {
         gsap
@@ -159,7 +164,7 @@ export default function CountdownToNov18() {
           })
           .to(cardRef.current, {
             scale: 1,
-            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+            boxShadow: "0 0 0px transparent",
             duration: 0.2,
             ease: "power2.out",
           });
@@ -170,10 +175,19 @@ export default function CountdownToNov18() {
       <div className="group">
         <div
           ref={cardRef}
-          className="relative bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/20 backdrop-blur-md rounded-2xl p-4 md:p-6 shadow-xl border border-primary/20 transition-all duration-300 hover:shadow-primary/20 hover:shadow-2xl hover:-translate-y-1"
+          className="relative bg-base-200/40 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-primary/20 transition-all duration-300 hover:border-primary/40 hover:bg-base-200/60"
         >
-          {/* Animated background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+          {/* Corner brackets */}
+          <CornerBrackets size="sm" />
+
+          {/* Subtle scanline */}
+          <div className="absolute inset-0 opacity-20 rounded-xl pointer-events-none overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent animate-pulse" />
+          </div>
+
+          {/* Data lines */}
+          <DataLine position="top" intensity="low" />
+          <DataLine position="bottom" intensity="low" />
 
           {/* Content */}
           <div className="relative z-10">
@@ -184,9 +198,13 @@ export default function CountdownToNov18() {
             </div>
 
             {/* Label */}
-            <p className="text-xs md:text-sm font-bold uppercase tracking-wider text-secondary/80 text-center">
-              {label}
-            </p>
+            <div className="relative">
+              <p className="text-xs md:text-sm font-bold uppercase tracking-wider text-primary/70 text-center font-mono">
+                {label}
+              </p>
+              {/* Underline effect */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent group-hover:w-full transition-all duration-300" />
+            </div>
           </div>
         </div>
       </div>
@@ -204,7 +222,14 @@ export default function CountdownToNov18() {
   }, [daysLeft, hoursLeft, minutesLeft, secondsLeft]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col items-center justify-center w-full space-y-4">
+      {/* System Status */}
+      <div className="flex flex-wrap justify-center gap-2 mb-2">
+        <StatusIndicator label="STATUS" value="TRACKING" type="success" />
+        <StatusIndicator label="TARGET" value="NOV_18" type="primary" />
+        <StatusIndicator label="MODE" value="COUNTDOWN" type="info" />
+      </div>
+
       {/* Countdown Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 w-full max-w-3xl">
         <CountdownCard

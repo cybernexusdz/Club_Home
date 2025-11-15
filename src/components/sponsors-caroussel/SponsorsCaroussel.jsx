@@ -1,17 +1,23 @@
-import { useEffect, useRef, useMemo } from "react";
-import { Handshake, Coins } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMemo, useState, useCallback } from "react";
+import { Handshake, Zap, Terminal, Code2 } from "lucide-react";
 import useGlitchAnimation from "../../hooks/useGlitchAnimation";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useCyberHeader, useCyberCards } from "../../hooks/useCyberAnimation";
+import {
+  CornerBrackets,
+  TerminalBadge,
+  DataLine,
+  StatusIndicator,
+} from "../ui/CyberBackground";
 
 const defaultSponsors = [
   {
     id: 1,
-    name: "Futuro",
+    name: "Futuro Skills Academy",
     logo: "/Futuro.jpg",
     lien: "https://futuroskillsacademy.com/",
+    description:
+      "Empowering the next generation of tech innovators with cutting-edge education",
+    tier: "PLATINUM",
   },
 ];
 
@@ -19,10 +25,10 @@ export default function SponsorsSection({
   sponsors = defaultSponsors,
   loading = false,
 }) {
-  const sectionRef = useRef(null);
   const { ref: glitchRef } = useGlitchAnimation({ repeatDelay: 3 });
-  const headerRef = useRef(null);
-  const sponsorsGridRef = useRef(null);
+  const { headerRef, sectionRef } = useCyberHeader();
+  const { containerRef } = useCyberCards({ cardSelector: ".sponsor-card" });
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   const list = useMemo(
     () =>
@@ -30,177 +36,189 @@ export default function SponsorsSection({
     [sponsors],
   );
 
-  // helper to open a link in a new tab (used by keyboard Enter/Space handlers)
-  const openInNewTab = (url) => {
+  const openInNewTab = useCallback((url) => {
     if (!url) return;
     window.open(url, "_blank", "noopener,noreferrer");
-  };
-
-  const handleCardKeyDown = (e, url) => {
-    // support Enter and Space to activate the card
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      openInNewTab(url);
-    }
-  };
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate header section
-      if (headerRef.current) {
-        gsap.from(headerRef.current.children, {
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "top 20%",
-            scrub: 1,
-            markers: false,
-          },
-          opacity: 0,
-          y: 30,
-          stagger: 0.1,
-          duration: 0.8,
-        });
-      }
-
-      // Animate sponsors grid
-      if (sponsorsGridRef.current) {
-        gsap.from(sponsorsGridRef.current, {
-          scrollTrigger: {
-            trigger: sponsorsGridRef.current,
-            start: "top 70%",
-            end: "top 30%",
-            scrub: 1,
-            markers: false,
-          },
-          opacity: 0,
-          y: 50,
-          duration: 1,
-        });
-
-        // Animate individual sponsor cards
-        const sponsorCards =
-          sponsorsGridRef.current.querySelectorAll(".sponsor-card");
-        if (sponsorCards.length > 0) {
-          gsap.from(sponsorCards, {
-            scrollTrigger: {
-              trigger: sponsorsGridRef.current,
-              start: "top 65%",
-              end: "top 25%",
-              scrub: 1,
-              markers: false,
-            },
-            opacity: 0,
-            scale: 0.8,
-            y: 20,
-            stagger: 0.1,
-            duration: 0.9,
-          });
-        }
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
   }, []);
+
+  const handleCardKeyDown = useCallback(
+    (e, url) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openInNewTab(url);
+      }
+    },
+    [openInNewTab],
+  );
 
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen py-12 px-4 sm:px-6 lg:px-10 bg-gradient-to-b from-base-100 via-base-200/30 to-base-100 relative overflow-hidden flex items-center"
+      className="min-h-screen py-20 px-4 sm:px-6 lg:px-10 bg-gradient-to-b from-base-100 via-base-200/20 to-base-100 relative overflow-hidden flex items-center"
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto w-full space-y-8 relative z-10">
-        <div
-          ref={headerRef}
-          className={`text-center space-y-3 transition-all duration-1000`}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-full text-primary text-sm font-semibold border border-primary/20 shadow-md">
-            <Handshake className="w-4 h-4 animate-pulse" />
-            <span>Built with partners</span>
-            <Coins className="w-4 h-4" />
+      <div className="max-w-7xl mx-auto w-full space-y-12 relative z-10">
+        {/* Header */}
+        <div ref={headerRef} className="text-center space-y-4">
+          <div className="mb-4">
+            <TerminalBadge icon={Terminal}>
+              &lt;PARTNERS_INITIATED&gt;
+            </TerminalBadge>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-bold text-base-content">
-            Supporting The{" "}
+          <h2 className="text-5xl sm:text-6xl font-black text-base-content tracking-tight font-mono">
+            <span className="text-primary/60">&gt;</span> Supporting The{" "}
             <span
               ref={glitchRef}
-              className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient"
+              className="relative inline-block bg-gradient-to-r from-primary via-secondary to-info bg-clip-text text-transparent animate-gradient"
             >
               Nexian
             </span>{" "}
             Mission
           </h2>
 
-          <p className="text-base sm:text-lg text-base-content/70 max-w-2xl mx-auto leading-relaxed">
-            We’re grateful to the organisations that support our community.
+          <p className="text-base sm:text-lg text-base-content/70 max-w-3xl mx-auto leading-relaxed font-mono">
+            <span className="text-primary font-bold">&gt;</span> Partnering with
+            organizations that fuel innovation and community growth
           </p>
+
+          {/* Terminal-style divider */}
+          <div className="flex items-center justify-center gap-2 text-primary/40 font-mono text-xs pt-4">
+            <Code2 className="w-4 h-4" />
+            <div className="flex gap-1">
+              <span className="animate-pulse">
+                ────────────────────────────────────────
+              </span>
+            </div>
+            <Code2 className="w-4 h-4" />
+          </div>
         </div>
 
+        {/* Sponsor Cards */}
         <div className="flex justify-center items-center">
-          <div className="w-full max-w-6xl">
+          <div className="w-full max-w-5xl">
             {loading ? (
               <div className="py-12 text-center">
-                <div className="h-44 w-full max-w-[520px] mx-auto rounded-2xl bg-base-200/40 animate-pulse" />
+                <div className="h-64 w-full rounded-2xl bg-base-200/40 animate-pulse border-2 border-primary/20 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-shimmer" />
+                </div>
               </div>
             ) : (
-              <div
-                ref={sponsorsGridRef}
-                className={`grid gap-6 ${
-                  list.length === 1
-                    ? "grid-cols-1"
-                    : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
-                }`}
-              >
-                {list.map((s) => (
+              <div ref={containerRef} className="grid gap-8 grid-cols-1">
+                {list.map((s, idx) => (
                   <div
                     key={s.id}
-                    className="flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-r from-base-200/40 via-base-200/30 to-base-200/40 border border-base-content/10 shadow-lg sponsor-card"
+                    className="sponsor-card cyber-card relative group perspective-1000"
+                    onMouseEnter={() => setHoveredCard(idx)}
+                    onMouseLeave={() => setHoveredCard(null)}
                   >
-                    {/* Outer clickable area converted to an accessible div (not <a>) */}
-                    <div
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => openInNewTab(s.lien)}
-                      onKeyDown={(e) => handleCardKeyDown(e, s.lien)}
-                      aria-label={`Open ${s.name} website`}
-                      className="flex flex-col items-center w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/30 rounded"
-                    >
-                      <div className="w-44 h-28 sm:w-56 sm:h-36 flex items-center justify-center bg-white/6 rounded-md shadow-sm p-4">
-                        <img
-                          src={s.logo}
-                          alt={s.name}
-                          className="max-h-full max-w-full object-contain"
-                        />
+                    {/* Corner brackets */}
+                    <CornerBrackets size="md" />
+
+                    {/* Pulsing outer glow */}
+                    <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 blur-xl opacity-60 group-hover:opacity-100 transition-all duration-500 animate-pulse-slow" />
+
+                    {/* Main border */}
+                    <div className="absolute inset-0 rounded-2xl border-2 border-primary/40 group-hover:border-primary/80 transition-all duration-300 neon-border-subtle" />
+
+                    {/* Hover scanning effect */}
+                    {hoveredCard === idx && (
+                      <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/20 to-transparent animate-scan" />
                       </div>
+                    )}
 
-                      <div className="mt-4 text-lg sm:text-base font-semibold text-base-content/90">
-                        {s.name}
-                      </div>
-
-                      {s.description && (
-                        <p className="mt-2 text-sm text-base-content/60 max-w-[30ch]">
-                          {s.description}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* The actual anchor for Visit — now NOT nested inside another anchor */}
-                    <div className="mt-4 flex items-center gap-3">
-                      <a
-                        href={s.githubURL || s.lien}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-primary underline-offset-2 hover:underline"
+                    {/* Card Content */}
+                    <div className="relative flex flex-col lg:flex-row items-center gap-8 p-8 lg:p-10 rounded-2xl bg-gradient-to-br from-base-200/80 via-base-200/60 to-base-200/80 backdrop-blur-md border-2 border-base-content/10 transition-all duration-500 group-hover:bg-base-200/90 group-hover:scale-[1.01]">
+                      {/* Logo Section */}
+                      <div
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => openInNewTab(s.lien)}
+                        onKeyDown={(e) => handleCardKeyDown(e, s.lien)}
+                        aria-label={`Open ${s.name} website`}
+                        className="flex-shrink-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-xl"
                       >
-                        Visit
-                      </a>
+                        <div className="w-72 h-48 lg:w-80 lg:h-56 flex items-center justify-center bg-base-100/60 rounded-xl border-2 border-primary/30 p-6 group-hover:border-primary/60 transition-all duration-500 relative overflow-hidden shadow-2xl">
+                          {/* Scanline effect */}
+                          <div className="absolute inset-0 scanline-slow opacity-40" />
+
+                          {/* Data lines */}
+                          <DataLine position="top" intensity="medium" />
+                          <DataLine position="bottom" intensity="medium" />
+
+                          <img
+                            src={s.logo}
+                            alt={s.name}
+                            loading="lazy"
+                            className="max-h-full max-w-full object-contain relative z-10 group-hover:scale-105 transition-all duration-500 filter group-hover:drop-shadow-[0_0_20px_rgba(var(--p),0.6)]"
+                          />
+
+                          {/* Tier badge */}
+                          {s.tier && (
+                            <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-primary to-secondary rounded-full text-xs font-black text-white border border-white/30 shadow-lg z-20 font-mono">
+                              {s.tier}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Info Section */}
+                      <div className="flex-grow text-center lg:text-left space-y-4">
+                        <div className="space-y-2">
+                          <div className="inline-block px-3 py-1 bg-primary/10 rounded-md border border-primary/30 text-xs font-mono text-primary uppercase tracking-widest">
+                            <Handshake className="inline w-3 h-3 mr-1" />
+                            Primary Sponsor
+                          </div>
+
+                          <h3 className="text-3xl lg:text-4xl font-black text-base-content tracking-tight group-hover:text-primary transition-colors duration-300 font-mono">
+                            {s.name}
+                          </h3>
+                        </div>
+
+                        {s.description && (
+                          <p className="text-base lg:text-lg text-base-content/70 leading-relaxed font-mono max-w-2xl group-hover:text-base-content/90 transition-colors duration-300">
+                            <span className="text-secondary">&gt;</span>{" "}
+                            {s.description}
+                          </p>
+                        )}
+
+                        {/* Status indicators */}
+                        <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-2">
+                          <StatusIndicator
+                            label="STATUS"
+                            value="ACTIVE"
+                            type="success"
+                          />
+                          <StatusIndicator
+                            label="LEVEL"
+                            value="MAX"
+                            type="primary"
+                          />
+                          <StatusIndicator
+                            label="SYNC"
+                            value="100%"
+                            type="success"
+                          />
+                        </div>
+
+                        {/* CTA Button */}
+                        <div className="pt-4">
+                          <a
+                            href={s.githubURL || s.lien}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg border-2 border-primary/50 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group/btn relative overflow-hidden"
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                            <span className="relative z-10 font-mono tracking-wider flex items-center gap-2">
+                              <Terminal className="w-4 h-4" />
+                              ACCESS_SITE
+                              <span className="text-xs opacity-70">.exe</span>
+                            </span>
+                            <Zap className="relative z-10 w-5 h-5 group-hover/btn:animate-pulse" />
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -209,23 +227,6 @@ export default function SponsorsSection({
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes gradient {
-          0%,
-          100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
     </section>
   );
 }

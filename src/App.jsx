@@ -8,6 +8,7 @@ import Separator from "./components/ui/Separator";
 import ContactSection from "./components/contact-section/ContactSection";
 import TeamSection from "./components/team-section/TeamSection";
 import { useState } from "react";
+import "./styles/cyberAnimation.css";
 
 function App() {
   const [theme, setTheme] = useState(
@@ -27,6 +28,7 @@ function App() {
         setTheme={setTheme}
         handleScrollComponent={handleScrollComponent}
       />
+
       {/* Hero Section */}
       <section id="Hero">
         <HeroSection theme={theme} />
