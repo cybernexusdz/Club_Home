@@ -209,7 +209,7 @@ const BlogSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [itemsPerView, setItemsPerView] = useState(3);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const navigate = useNavigate();
@@ -258,6 +258,18 @@ const BlogSection = () => {
   const articles = useMemo(
     () => [
       {
+        id: 4,
+        title: "ShipBot Game Challenge",
+        category: "Game",
+        tagColor: "from-orange-500 to-red-500",
+        author: "Kamel Abada",
+        date: "8 November 2025",
+        excerpt:
+          "Test your skills in our interactive ShipBot game. Can you master the challenge?",
+        imageKey: "shipbotImage",
+        link: "/shipgame",
+      },
+      {
         id: 1,
         title: "Getting Started with CYBERNEXUS",
         category: "Guide",
@@ -290,18 +302,6 @@ const BlogSection = () => {
         excerpt:
           "Exploring how artificial intelligence is shaping the future of technology.",
         imageKey: "image1",
-      },
-      {
-        id: 4,
-        title: "ShipBot Game Challenge",
-        category: "Game",
-        tagColor: "from-orange-500 to-red-500",
-        author: "CYBERNEXUS Team",
-        date: "10 January 2025",
-        excerpt:
-          "Test your skills in our interactive ShipBot game. Can you master the challenge?",
-        imageKey: "shipbotImage",
-        link: "/shipgame",
       },
       {
         id: 5,
@@ -501,8 +501,6 @@ const BlogSection = () => {
         <div
           ref={carouselRef}
           className="relative w-full"
-          onMouseEnter={() => setIsAutoPlaying(false)}
-          onMouseLeave={() => setIsAutoPlaying(true)}
         >
           <div className="relative overflow-hidden w-full">
             {needsCarousel ? (
@@ -532,22 +530,24 @@ const BlogSection = () => {
                   ))}
                 </div>
 
-                {totalSlides > 1 && !isMobile && (
+                {totalSlides > 1 && (
                   <>
                     <button
                       onClick={prevSlide}
                       disabled={currentIndex === 0}
-                      className="absolute left-0 top-1/2 -translate-y-1/2 z-40 w-12 h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group"
+                      className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white active:scale-95 transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group touch-manipulation"
+                      aria-label="Previous slide"
                     >
-                      <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
                     </button>
 
                     <button
                       onClick={nextSlide}
                       disabled={currentIndex >= articles.length - itemsPerView}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 z-40 w-12 h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group"
+                      className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white active:scale-95 transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group touch-manipulation"
+                      aria-label="Next slide"
                     >
-                      <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
                     </button>
                   </>
                 )}

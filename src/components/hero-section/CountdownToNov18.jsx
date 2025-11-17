@@ -18,10 +18,10 @@ export default function CountdownToNov18() {
     const updateCountdown = () => {
       const today = new Date();
       const currentYear = today.getFullYear();
-      let targetDate = new Date(currentYear, 10, 18);
+      let targetDate = new Date(currentYear, 10, 18, 23, 0, 0);
 
       if (today > targetDate) {
-        targetDate = new Date(currentYear + 1, 10, 18);
+        targetDate = new Date(currentYear + 1, 10, 18, 23, 0, 0);
       }
 
       const diffTime = targetDate - today;
