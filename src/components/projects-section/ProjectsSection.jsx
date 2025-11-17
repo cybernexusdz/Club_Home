@@ -1,9 +1,7 @@
 import { useEffect, useState, useMemo, useRef, useCallback, memo } from "react";
 import {
-  Search,
   ChevronLeft,
   ChevronRight,
-  Filter,
   Code2,
   Users,
   GitBranch,
@@ -26,64 +24,15 @@ gsap.registerPlugin(ScrollTrigger);
 const sampleProjects = [
   {
     id: 1,
-    name: "AI Chat Bot",
+    name: "CYBERNEXUS Website",
     description:
-      "An intelligent chatbot powered by machine learning that can understand context and provide helpful responses.",
-    imageURL:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=60",
-    technologies: ["React", "Python", "TensorFlow"],
-    githubURL: "https://github.com/cybernexusdz/chatbot",
-    liveURL: "https://demo.cybernexus.com",
-    contributors: 5,
-    createdAt: "Oct 2024",
-  },
-  {
-    id: 5,
-    name: "Quantum Dashboard",
-    description:
-      "Real-time analytics dashboard with quantum-inspired visualizations and predictive modeling.",
-    imageURL:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=60",
-    technologies: ["React", "Python", "TensorFlow"],
-    githubURL: "https://github.com/cybernexusdz/chatbot",
-    liveURL: "https://demo.cybernexus.com",
-    contributors: 5,
-    createdAt: "Oct 2024",
-  },
-  {
-    id: 2,
-    name: "Portfolio Website",
-    description: "Personal portfolio built with React, Tailwind and Vite.",
-    imageURL:
-      "https://images.unsplash.com/photo-1503264116251-35a269479413?w=600&q=60",
-    technologies: ["React", "TailwindCSS"],
-    githubURL: "https://github.com/cybernexusdz/portfolio",
-    liveURL: "https://cybernexus.com",
-    contributors: 2,
-    createdAt: "Jan 2025",
-  },
-  {
-    id: 3,
-    name: "Student Manager",
-    description: "Manage student records using SQLite and JavaFX.",
-    imageURL:
-      "https://images.unsplash.com/photo-1590608897129-79da98d159ad?w=600&q=60",
-    technologies: ["Java", "SQLite"],
-    githubURL: "https://github.com/cybernexusdz/student-manager",
-    contributors: 3,
-    createdAt: "Aug 2024",
-  },
-  {
-    id: 4,
-    name: "Smart Home System",
-    description: "IoT-based home automation using Raspberry Pi and MQTT.",
-    imageURL:
-      "https://images.unsplash.com/photo-1581093588401-22d5f4f9c2a7?w=600&q=60",
-    technologies: ["Python", "IoT"],
-    githubURL: "#",
-    liveURL: "#",
-    contributors: 2,
-    createdAt: "Mar 2024",
+      "Official web presence for the CYBERNEXUS club, showcasing projects, events, and community. Built with modern web technologies and collaborative development.",
+    imageURL: "/website-project.png",
+    technologies: ["React", "Vite", "TailwindCSS", "JavaScript", "GSAP"],
+    githubURL: "https://github.com/cybernexusdz/cybernexus_website",
+    liveURL: "https://cybernexusdz.vercel.app",
+    contributors: 6,
+    createdAt: "2025",
   },
 ];
 
@@ -468,53 +417,6 @@ export default function ProjectsSection({
           />
         </div>
 
-        {/* Search and Filter Bar - Removed blur effects */}
-        <div
-          ref={searchFilterRef}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3"
-        >
-          <div className="relative w-full sm:w-72 group">
-            {/* Simplified glow */}
-            <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="w-full pl-10 pr-10 py-3 bg-base-200/90 border-2 border-primary/20 rounded-xl focus:border-primary focus:outline-none transition-all text-base-content font-mono hover:border-primary/40 shadow-inner"
-              />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-primary/50" />
-              {query && (
-                <button
-                  onClick={() => setQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-base-content/30 hover:text-error transition-colors font-mono font-bold"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          </div>
-          <div className="relative group">
-            {/* Simplified glow */}
-            <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
-            <div className="relative">
-              <select
-                className="pl-10 pr-8 py-3 bg-base-200/90 border-2 border-primary/20 rounded-xl focus:border-primary focus:outline-none transition-all text-base-content font-mono hover:border-primary/40 shadow-inner cursor-pointer font-bold"
-                value={activeTag}
-                onChange={(e) => setActiveTag(e.target.value)}
-              >
-                {tags.map((tag) => (
-                  <option key={tag} value={tag}>
-                    {tag === ALL_TAG ? "ALL_TECH" : tag.toUpperCase()}
-                  </option>
-                ))}
-              </select>
-              <Filter className="w-4 h-4 text-primary absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-            </div>
-          </div>
-        </div>
-
         {/* Status Indicators */}
         <div ref={statusRef} className="flex flex-wrap justify-center gap-2">
           <StatusIndicator
@@ -522,14 +424,6 @@ export default function ProjectsSection({
             value={filteredProjects.length}
             type="success"
           />
-          <StatusIndicator
-            label="FILTER"
-            value={activeTag === ALL_TAG ? "NONE" : activeTag.toUpperCase()}
-            type="primary"
-          />
-          {query && (
-            <StatusIndicator label="SEARCH" value="ACTIVE" type="warning" />
-          )}
         </div>
       </div>
     </section>

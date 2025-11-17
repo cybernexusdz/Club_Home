@@ -1,3 +1,5 @@
+import daisyui from "daisyui";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -8,9 +10,20 @@ export default {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [daisyui],
   daisyui: {
     themes: [
+      {
+        girlDark: {
+          primary: "#E776F7", // main accent
+          secondary: "#713D87", // secondary
+          accent: "#1A031E", // dark surface
+          neutral: "#713D87", // UI border/neutral
+          "base-100": "#1A031E", // background
+          "base-content": "#FFFFFF", // text
+          info: "#E776F7",
+        },
+      },
       // 👧 Girl Light
       {
         girlLight: {
@@ -21,18 +34,6 @@ export default {
           "base-100": "#FDF2FF", // background
           "base-content": "#000000", // default text
           info: "#E776F7", // extra accent if needed
-        },
-      },
-      // 👧 Girl Dark
-      {
-        girlDark: {
-          primary: "#E776F7", // main accent
-          secondary: "#713D87", // secondary
-          accent: "#1A031E", // dark surface
-          neutral: "#713D87", // UI border/neutral
-          "base-100": "#1A031E", // background
-          "base-content": "#FFFFFF", // text
-          info: "#E776F7",
         },
       },
       // 👦 Boy Light

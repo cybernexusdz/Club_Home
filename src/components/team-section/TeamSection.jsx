@@ -2,6 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import {
   Linkedin,
   Github,
+  Crown,
+  Brain,
+  Shield,
   Terminal,
   Mail,
   Network,
@@ -23,10 +26,115 @@ import gsap from "gsap";
 
 const teamMembers = [
   {
+    id: 2,
+    name: "Ait Said Abdelkarim",
+    role: "Network Specialist",
+    image: "said-image-front.png",
+    borderClass: "border-emerald-500/50",
+    bgGradientClass: "from-emerald-500/10 to-teal-500/5",
+    accentClass: "text-emerald-400",
+    iconColor: "text-emerald-400",
+    iconBgColor: "bg-emerald-500/20",
+    iconBorderColor: "border-emerald-500/50",
+    socialLinks: [
+      {
+        icon: Mail,
+        label: "Email",
+        href: "mailto:aitsaidabdelkarim1@gmail.com",
+      },
+      {
+        icon: Github,
+        label: "GitHub",
+        href: "https://github.com/AitSaid-Abdelkarim",
+      },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-emerald-500/20 rounded-full flex items-center justify-center">
+          <Network className="w-8 h-8 text-emerald-400" />
+        </div>
+        <h3 className="text-xl font-bold text-emerald-400">
+          Ait Said Abdelkarim
+        </h3>
+        <p className="text-sm text-base-content/80">Network Specialist</p>
+        <p className="text-xs text-base-content/70">
+          M2 Réseaux et Télécommunications
+        </p>
+        <p className="text-xs">
+          <a href="mailto:aitsaidabdelkarim1@gmail.com">
+            aitsaidabdelkarim1@gmail.com
+          </a>
+        </p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(220,255,240,0.08), rgba(235,255,250,0.02))",
+      rimColor: "rgba(16,185,129,0.12)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 20px 50px rgba(0,120,80,0.08)",
+      badge: "RT",
+      badgeClass: "bg-emerald-500/15 text-emerald-300",
+      animateBack: true,
+      tiltStrength: 16,
+    },
+  },
+  {
+    id: 4,
+    name: "Benzarfa Rania Manel",
+    role: "HR",
+    image: "rania-image-front.png",
+    borderClass: "border-rose-500/50",
+    bgGradientClass: "from-rose-500/10 to-pink-500/5",
+    accentClass: "text-rose-400",
+    iconColor: "text-rose-400",
+    iconBgColor: "bg-rose-500/20",
+    iconBorderColor: "border-rose-500/50",
+    socialLinks: [
+      {
+        icon: Mail,
+        label: "Email",
+        href: "mailto:rania.benzarfa@example.com",
+      },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-rose-500/20 rounded-full flex items-center justify-center">
+          <Brain className="w-8 h-8 text-rose-400" />
+        </div>
+        <h3 className="text-xl font-bold text-rose-400">
+          Benzarfa Rania Manel
+        </h3>
+        <p className="text-sm text-base-content/80">AI Specialist</p>
+        <p className="text-xs text-base-content/70">Master 1 AID</p>
+        <p className="text-xs">
+          <a href="mailto:rania.benzarfa@example.com">
+            rania.benzarfa@example.com
+          </a>
+        </p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(255,220,240,0.08), rgba(255,235,250,0.02))",
+      rimColor: "rgba(244,63,94,0.12)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 20px 50px rgba(120,0,60,0.08)",
+      badge: "AID",
+      badgeClass: "bg-rose-500/15 text-rose-300",
+      animateBack: true,
+      tiltStrength: 16,
+    },
+  },
+  {
     id: 1,
     name: "Aziz Ben",
     role: "Student",
-    image: "/azizben-image-front.jpg",
+    image: "aziz-image-front.jpg",
     borderClass: "border-sky-500/50",
     bgGradientClass: "from-sky-500/10 to-blue-500/5",
     accentClass: "text-sky-400",
@@ -229,7 +337,51 @@ const teamMembers = [
       tiltStrength: 14,
     },
   },
-
+  {
+    id: 14,
+    name: "Hadjadj Kawther",
+    role: "Treasurer",
+    image: "kawther-front-image.png",
+    borderClass: "border-purple-500/50",
+    bgGradientClass: "from-purple-500/10 to-pink-500/5",
+    accentClass: "text-purple-400",
+    iconColor: "text-purple-400",
+    iconBgColor: "bg-purple-500/20",
+    iconBorderColor: "border-purple-500/50",
+    socialLinks: [
+      {
+        icon: Mail,
+        label: "Email",
+        href: "mailto:kawther.had47@gmail.com",
+      },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-purple-500/20 rounded-full flex items-center justify-center">
+          <Crown className="w-8 h-8 text-purple-400" />
+        </div>
+        <h3 className="text-xl font-bold text-purple-400">Hadjadj Kawther</h3>
+        <p className="text-sm text-base-content/80">Treasurer</p>
+        <p className="text-xs text-base-content/70">Master 1 GL</p>
+        <p className="text-xs">
+          <a href="mailto:kawther.had47@gmail.com">kawther.had47@gmail.com</a>
+        </p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(240,220,255,0.08), rgba(250,235,255,0.02))",
+      rimColor: "rgba(186,85,211,0.12)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 20px 50px rgba(120,0,120,0.08)",
+      badge: "GI",
+      badgeClass: "bg-purple-500/15 text-purple-300",
+      animateBack: true,
+      tiltStrength: 16,
+    },
+  },
   {
     id: 3,
     name: "Hakim Ait Abderrahim",
@@ -377,19 +529,20 @@ const teamMembers = [
     },
   },
   {
-    id: 9, // keep original id if you like, or update
+    id: 9,
     name: "Sabrine Boughrab",
-    role: "Club Owner",
+    role: "Club Owner & Leader",
     image: "/sabrin-image-front.png",
-    // stronger, golden border to stand out
-    borderClass: "border-2 border-amber-400/60",
-    // a warm, slightly richer gradient for front/back art
-    bgGradientClass: "from-amber-100/10 to-yellow-50/3",
-    accentClass: "text-amber-400",
-    // icons use theme-aware coloring; links section will still use the global links style
-    iconColor: "text-base-content",
-    iconBgColor: "bg-base-100/10",
-    iconBorderColor: "border-base-content/20",
+    // Strong purple/fuchsia border - NO TRANSPARENCY
+    borderClass:
+      "border-4 border-fuchsia-500 shadow-[0_0_30px_rgba(217,70,239,0.6)]",
+    // Solid purple gradient - NO TRANSPARENCY
+    bgGradientClass: "from-purple-900 via-fuchsia-900 to-purple-900",
+    accentClass: "text-fuchsia-400",
+    // Purple theme colors
+    iconColor: "text-fuchsia-300",
+    iconBgColor: "bg-fuchsia-600",
+    iconBorderColor: "border-fuchsia-400",
     socialLinks: [
       {
         icon: Mail,
@@ -397,137 +550,125 @@ const teamMembers = [
         href: "mailto:sabrineboughrab@gmail.com",
         platform: "email",
       },
-      // add LinkedIn/GitHub if available
     ],
     backContent: (
       <div className="relative w-full h-full flex items-center justify-center p-6 text-center">
-        {/* FULL COVER decorative background: nebula + particles (fills entire back face) */}
-        <div
-          className="absolute inset-0 rounded-3xl pointer-events-none -z-10 overflow-hidden"
-          aria-hidden="true"
-        >
-          {/* subtle warm nebula that's transparent so it blends with card's bg */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(245,200,110,0.06), rgba(220,150,40,0.03))",
-            }}
-          />
-
-          {/* star specks / particles (full size) */}
-          <div className="absolute inset-0 stars-layer" />
-
-          {/* soft golden halo centered behind the badge */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-44 h-44 rounded-full blur-3xl opacity-25 bg-amber-400/30" />
-          </div>
-
-          {/* subtle confetti (floating shapes) */}
-          <div className="absolute inset-0 confetti-layer" />
-        </div>
-
         {/* FOREGROUND */}
         <div className="z-10 flex flex-col items-center gap-2">
-          {/* top-left ribbon — placed visually with absolute positioning inside the back face */}
-          <div className="absolute left-4 top-4 z-20">
-            <div className="rotate-3 bg-amber-400/95 text-amber-900 text-xs font-semibold px-3 py-1 rounded-sm shadow-md border border-amber-300/30">
+          {/* Elite Shield Badge with crown */}
+          <div className="mx-auto mb-2 w-32 h-32 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-800 to-fuchsia-800 border-4 border-fuchsia-400 shadow-2xl shadow-fuchsia-500/70 relative">
+            <Crown className="w-16 h-16 text-yellow-300 animate-crown-purple drop-shadow-[0_0_15px_rgba(253,224,71,0.8)]" />
+
+            {/* Small stars around crown */}
+            <Star
+              className="absolute top-2 right-2 w-4 h-4 text-yellow-300 animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            />
+            <Star
+              className="absolute bottom-2 left-2 w-3 h-3 text-fuchsia-300 animate-pulse"
+              style={{ animationDelay: "1s" }}
+            />
+          </div>
+
+          {/* Name with strong purple glow */}
+          <h3 className="text-2xl sm:text-3xl font-black text-fuchsia-200 drop-shadow-[0_0_20px_rgba(217,70,239,1)] font-mono tracking-wider">
+            Sabrine Boughrab
+          </h3>
+
+          {/* Role badges */}
+          <div className="flex items-center gap-2 flex-wrap justify-center">
+            <div className="bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-3 py-1 rounded-full text-xs font-bold border border-fuchsia-400 shadow-lg flex items-center gap-1">
+              <Shield className="w-3 h-3" />
               Club Owner
+            </div>
+            <div className="bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white px-3 py-1 rounded-full text-xs font-bold border border-purple-400 shadow-lg">
+              1 Master RT
             </div>
           </div>
 
-          {/* crown badge */}
-          <div
-            className="mx-auto mb-1 w-28 h-28 rounded-full flex items-center justify-center
-                        bg-base-100/70 border border-amber-300/20 shadow-2xl backdrop-blur-sm"
-          >
-            {/* lucide Crown/Award icon — inherits color */}
-            <svg
-              className="w-12 h-12 text-amber-500 animate-crown"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M2 15h20l-2 6H4l-2-6z" />
-              <path d="M7 8l3 6 3-6 3 6 3-6" />
-            </svg>
-          </div>
-
-          <h3 className="text-xl sm:text-2xl font-bold text-amber-500">
-            Sabrine Boughrab
-          </h3>
-          <p className="text-sm text-base-content/80">Club Owner</p>
-          <p className="text-xs text-base-content/70">1 Master RT</p>
-
-          <div className="mt-1 text-sm">
-            <p className="max-w-xs">
-              Leading the club — events, mentorship & community ✨
-            </p>
+          {/* Elite status indicators */}
+          <div className="flex gap-2 mt-2">
+            <div className="px-2 py-1 bg-fuchsia-500/20 border border-fuchsia-400/50 rounded text-xs font-mono text-fuchsia-300">
+              STATUS: ELITE
+            </div>
+            <div className="px-2 py-1 bg-purple-500/20 border border-purple-400/50 rounded text-xs font-mono text-purple-300">
+              RANK: LEADER
+            </div>
           </div>
         </div>
 
-        {/* Inline CSS for animations + particles (respects reduced motion) */}
+        {/* Inline CSS for purple theme animations */}
         <style>{`
-        /* crown float */
-        @keyframes crownFloat {
-          0% { transform: translateY(0) scale(1) rotate(-1deg); }
-          50% { transform: translateY(-8px) scale(1.02) rotate(1deg); }
-          100% { transform: translateY(0) scale(1) rotate(-1deg); }
+        /* Crown float animation - purple version */
+        @keyframes crownFloatPurple {
+          0% { transform: translateY(0) scale(1) rotate(-2deg); }
+          50% { transform: translateY(-10px) scale(1.05) rotate(2deg); }
+          100% { transform: translateY(0) scale(1) rotate(-2deg); }
         }
-        .animate-crown { animation: crownFloat 4.2s ease-in-out infinite; color: #b45309; } /* amber-600 */
-        /* stars (full-cover) */
-        .stars-layer {
+        .animate-crown-purple { 
+          animation: crownFloatPurple 3s ease-in-out infinite;
+        }
+        
+        /* Purple stars (full-cover) */
+        .stars-layer-purple {
           background:
-            radial-gradient(circle at 6% 20%, rgba(255,255,255,0.95) 0.6px, transparent 1px),
-            radial-gradient(circle at 22% 72%, rgba(255,255,255,0.85) 0.7px, transparent 1px),
-            radial-gradient(circle at 40% 30%, rgba(255,255,255,0.6) 0.6px, transparent 1px),
-            radial-gradient(circle at 68% 11%, rgba(255,255,255,0.7) 0.6px, transparent 1px),
-            radial-gradient(circle at 86% 62%, rgba(255,255,255,0.82) 0.6px, transparent 1px);
-          mix-blend-mode: screen;
-          opacity: 0.9;
-          animation: starPulse 7s ease-in-out infinite;
+            radial-gradient(circle at 8% 15%, rgba(217, 70, 239, 0.95) 1px, transparent 1.5px),
+            radial-gradient(circle at 25% 75%, rgba(236, 72, 153, 0.85) 1.2px, transparent 1.8px),
+            radial-gradient(circle at 45% 25%, rgba(192, 38, 211, 0.7) 0.8px, transparent 1.2px),
+            radial-gradient(circle at 70% 10%, rgba(217, 70, 239, 0.8) 1px, transparent 1.5px),
+            radial-gradient(circle at 88% 65%, rgba(236, 72, 153, 0.9) 1.1px, transparent 1.6px),
+            radial-gradient(circle at 15% 50%, rgba(192, 38, 211, 0.75) 0.9px, transparent 1.3px),
+            radial-gradient(circle at 92% 35%, rgba(217, 70, 239, 0.85) 1px, transparent 1.4px);
+          animation: starPulsePurple 5s ease-in-out infinite;
         }
-        @keyframes starPulse {
-          0% { opacity: 0.7; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.01); }
-          100% { opacity: 0.7; transform: scale(1); }
+        
+        @keyframes starPulsePurple {
+          0% { opacity: 0.8; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.02); }
+          100% { opacity: 0.8; transform: scale(1); }
         }
-        /* confetti: small floating diamond shapes */
-        .confetti-layer::before,
-        .confetti-layer::after {
+        
+        /* Purple confetti: floating diamonds */
+        .confetti-layer-purple::before,
+        .confetti-layer-purple::after {
           content: "";
           position: absolute;
-          width: 8px;
-          height: 8px;
+          width: 10px;
+          height: 10px;
           transform: rotate(45deg);
-          background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.3));
-          left: 12%;
-          top: 20%;
+          background: radial-gradient(circle at 30% 30%, rgba(217, 70, 239, 0.9), rgba(192, 38, 211, 0.4));
+          left: 15%;
+          top: 25%;
           opacity: 0.9;
-          border-radius: 1px;
+          border-radius: 2px;
           box-shadow:
-            40px 30px 0 rgba(245,158,11,0.12),
-            140px 60px 0 rgba(245,158,11,0.10),
-            220px 30px 0 rgba(234,88,12,0.08);
-          animation: confettiFloat 8s linear infinite;
+            50px 40px 0 rgba(236, 72, 153, 0.3),
+            150px 70px 0 rgba(217, 70, 239, 0.25),
+            240px 40px 0 rgba(192, 38, 211, 0.2),
+            100px 120px 0 rgba(236, 72, 153, 0.25);
+          animation: confettiFloatPurple 10s linear infinite;
         }
-        .confetti-layer::after {
-          left: 70%;
-          top: 68%;
-          transform: rotate(45deg) scale(.9);
-          animation-delay: 2s;
+        
+        .confetti-layer-purple::after {
+          left: 75%;
+          top: 70%;
+          transform: rotate(45deg) scale(1.1);
+          animation-delay: 3s;
+          background: radial-gradient(circle at 30% 30%, rgba(236, 72, 153, 0.9), rgba(217, 70, 239, 0.4));
         }
-        @keyframes confettiFloat {
+        
+        @keyframes confettiFloatPurple {
           0% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
-          50% { transform: translateY(-18px) rotate(45deg); opacity: 0.6; }
+          50% { transform: translateY(-25px) rotate(45deg); opacity: 0.5; }
           100% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
         }
+        
+        /* Respect reduced motion preference */
         @media (prefers-reduced-motion: reduce) {
-          .animate-crown, .stars-layer, .confetti-layer::before, .confetti-layer::after {
+          .animate-crown-purple, 
+          .stars-layer-purple, 
+          .confetti-layer-purple::before, 
+          .confetti-layer-purple::after {
             animation: none !important;
           }
         }
@@ -535,17 +676,19 @@ const teamMembers = [
       </div>
     ),
     theme: {
+      // SOLID purple background - NO TRANSPARENCY
       background:
-        "linear-gradient(180deg, rgba(255,247,233,0.08), rgba(255,250,240,0.02))",
-      rimColor: "rgba(245,158,11,0.12)",
+        "linear-gradient(180deg, rgb(88, 28, 135), rgb(134, 25, 143))",
+      rimColor: "rgba(217, 70, 239, 0.8)",
       gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.95,
-      shadow: "0 30px 80px rgba(250,180,60,0.10)",
-      badge: "OWNER",
-      badgeClass: "bg-amber-400/20 text-amber-500",
+        "radial-gradient(closest-side, rgba(217, 70, 239, 0.15), transparent)",
+      glossOpacity: 1,
+      shadow: "0 40px 100px rgba(217, 70, 239, 0.4)",
+      badge: "LEADER",
+      badgeClass:
+        "bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white border-2 border-fuchsia-400 shadow-lg shadow-fuchsia-500/50",
       animateBack: true,
-      tiltStrength: 16,
+      tiltStrength: 18,
     },
   },
 
@@ -842,14 +985,13 @@ const teamMembers = [
 
 export default function TeamSection() {
   const [currentIndex, setCurrentIndex] = useState(
-    teamMembers.findIndex((m) => m.role === "Club Owner"),
+    teamMembers.findIndex((m) => m.role === "Club Owner & Leader"),
   );
   const [isMobile, setIsMobile] = useState(false);
   const titleAnimRef = useRef(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const isDragging = useRef(false);
-
   // Apply glitch effect to "Team" text
   const { ref: glitchRef } = useGlitchAnimation({ repeatDelay: 3 });
 

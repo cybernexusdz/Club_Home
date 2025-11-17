@@ -21,103 +21,74 @@ gsap.registerPlugin(ScrollTrigger);
 
 const images = { image1, image2, openDayImage, shipbotImage };
 
-// Optimized Club News Card - Reduced effects and simplified animations
-const ClubNewsCard = memo(
-  ({ hoveredCard, onHover, clubNewsRef, openDayImage }) => {
-    const isHovered = hoveredCard === "clubNews";
+const ClubNewsCard = memo(({ onHover, clubNewsRef, openDayImage }) => {
+  return (
+    <div ref={clubNewsRef} className="mb-12 sm:mb-14 md:mb-16">
+      <div
+        className="relative group"
+        onMouseEnter={() => onHover("clubNews")}
+        onMouseLeave={() => onHover(null)}
+      >
+        <div className="hidden sm:block">
+          <CornerBrackets size="lg" />
+        </div>
 
-    return (
-      <div ref={clubNewsRef} className="mb-12 sm:mb-14 md:mb-16">
-        <div
-          className="relative group"
-          onMouseEnter={() => onHover("clubNews")}
-          onMouseLeave={() => onHover(null)}
-        >
-          <div className="hidden sm:block">
-            <CornerBrackets size="lg" />
-          </div>
+        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
 
-          {/* Simplified glow - only on hover, removed multiple layers */}
-          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
+        <div className="absolute inset-0 rounded-2xl border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-300" />
 
-          {/* Single border instead of neon-border class */}
-          <div className="absolute inset-0 rounded-2xl border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-300" />
+        <div className="relative bg-base-200/95 rounded-2xl overflow-hidden border-2 border-base-content/10 shadow-2xl">
+          <DataLine position="top" intensity="medium" />
+          <DataLine position="bottom" intensity="medium" />
 
-          {/* Removed scanning animation - performance heavy */}
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-1/2 p-0 overflow-hidden relative">
+              <img
+                src={openDayImage}
+                alt="CYBERNEXUS Open Day"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
 
-          {/* Reduced backdrop-blur and opacity layers */}
-          <div className="relative bg-base-200/95 rounded-2xl overflow-hidden border-2 border-base-content/10 shadow-2xl">
-            <DataLine position="top" intensity="medium" />
-            <DataLine position="bottom" intensity="medium" />
-
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-1/2 p-0 overflow-hidden relative">
-                <img
-                  src={openDayImage}
-                  alt="CYBERNEXUS Open Day"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div className="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between relative">
-                <div>
-                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                    <span className="text-primary font-mono text-xs sm:text-sm font-bold tracking-wider">
-                      SYSTEM_NEWS
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-base-content mb-3 sm:mb-4 font-mono group-hover:text-primary transition-colors duration-300">
-                    <span className="text-secondary/60">&gt;</span> CYBERNEXUS
-                    Open Day
-                  </h3>
-
-                  <p className="text-primary/80 mb-3 sm:mb-4 md:mb-6 text-xs sm:text-sm font-mono flex items-center gap-2">
-                    <Terminal className="w-3 h-3 sm:w-4 sm:h-4" />
-                    Event Date: Coming Soon
-                  </p>
-
-                  <p className="text-base-content/70 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base font-mono">
-                    Join us for an exciting open day event showcasing the latest
-                    in tech innovation and student development. Connect with
-                    fellow tech enthusiasts and explore opportunities.
-                  </p>
+            <div className="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between relative">
+              <div>
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                  <span className="text-primary font-mono text-xs sm:text-sm font-bold tracking-wider">
+                    SYSTEM_NEWS
+                  </span>
                 </div>
 
-                <button className="w-full sm:w-auto self-start sm:self-end relative group/btn overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-                  <div className="relative bg-gradient-to-r from-primary to-secondary text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold font-mono hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 flex items-center justify-center gap-2 border-2 border-primary/50 text-sm sm:text-base">
-                    <span className="text-white/80">&gt;</span>
-                    Learn More
-                    <ArrowRight
-                      size={16}
-                      className="sm:w-5 sm:h-5 group-hover/btn:translate-x-1 transition-transform"
-                    />
-                  </div>
-                </button>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-base-content mb-3 sm:mb-4 font-mono group-hover:text-primary transition-colors duration-300">
+                  <span className="text-secondary/60">&gt;</span> CYBERNEXUS
+                  Open Day
+                </h3>
+
+                <p className="text-primary/80 mb-3 sm:mb-4 md:mb-6 text-xs sm:text-sm font-mono flex items-center gap-2">
+                  <Terminal className="w-3 h-3 sm:w-4 sm:h-4" />
+                  Event Date: Coming Soon
+                </p>
+
+                <p className="text-base-content/70 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base font-mono">
+                  Join us for an exciting open day event showcasing the latest
+                  in tech innovation and student development. Connect with
+                  fellow tech enthusiasts and explore opportunities.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
-  },
-);
+    </div>
+  );
+});
 
 ClubNewsCard.displayName = "ClubNewsCard";
 
-// Highly optimized Article Card - removed heavy effects
 const ArticleCard = memo(
   ({ article, isHovered, onMouseEnter, onMouseLeave, onClick }) => {
-    const buttonText = useMemo(() => {
-      if (article.link === "/shipgame") return "Play";
-      if (article.id === 1) return "Join Now";
-      return "Read More";
-    }, [article.link, article.id]);
-
     return (
       <div
         className="blog-article-card relative group h-full"
@@ -128,22 +99,16 @@ const ArticleCard = memo(
           <CornerBrackets size="md" />
         </div>
 
-        {/* Simplified glow - only on hover */}
         <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
 
-        {/* Single border */}
         <div className="absolute inset-0 rounded-xl border-2 border-primary/20 group-hover:border-primary/50 transition-all duration-300" />
 
-        {/* Removed scanning animation for performance */}
-
-        {/* Reduced backdrop-blur layers */}
         <div className="relative bg-base-200/95 rounded-xl overflow-hidden border-2 border-base-content/10 shadow-2xl transition-all duration-300 h-full flex flex-col">
           <DataLine position="top" intensity="low" />
           <DataLine position="bottom" intensity="low" />
 
           <div className="p-4 sm:p-5 md:p-6 relative flex flex-col flex-1">
             <div className="relative w-fit mb-3 sm:mb-4 group/tag">
-              {/* Removed blur effect for performance */}
               <div
                 className={`relative bg-gradient-to-r ${article.tagColor} px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border-2 border-white/20`}
               >
@@ -166,7 +131,6 @@ const ArticleCard = memo(
             </p>
 
             <div className="w-full h-40 sm:h-48 flex-shrink-0 mb-4 relative group/img">
-              {/* Removed blur effect */}
               <img
                 src={images[article.imageKey]}
                 alt={article.title}
@@ -180,20 +144,22 @@ const ArticleCard = memo(
               {article.excerpt}
             </p>
 
-            <button
-              onClick={onClick}
-              className="w-full relative group/btn overflow-hidden mt-auto"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-              <div className="relative bg-gradient-to-r from-primary to-secondary text-white py-2.5 sm:py-3 rounded-lg font-bold font-mono hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 flex items-center justify-center gap-2 border-2 border-primary/40 text-sm sm:text-base">
-                <span className="text-white/80">&gt;</span>
-                {buttonText}
-                <ArrowRight
-                  size={16}
-                  className="group-hover/btn:translate-x-1 transition-transform"
-                />
-              </div>
-            </button>
+            {article.link === "/shipgame" && (
+              <button
+                onClick={onClick}
+                className="w-full relative group/btn overflow-hidden mt-auto"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                <div className="relative bg-gradient-to-r from-primary to-secondary text-white py-2.5 sm:py-3 rounded-lg font-bold font-mono hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 flex items-center justify-center gap-2 border-2 border-primary/40 text-sm sm:text-base">
+                  <span className="text-white/80">&gt;</span>
+                  Play
+                  <ArrowRight
+                    size={16}
+                    className="group-hover/btn:translate-x-1 transition-transform"
+                  />
+                </div>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -211,12 +177,12 @@ const BlogSection = () => {
   const [itemsPerView, setItemsPerView] = useState(3);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const navigate = useNavigate();
   const sectionRef = useRef(null);
   const autoPlayRef = useRef(null);
-
-  // Single ref for animations - simplified
   const hasAnimatedRef = useRef(false);
 
   const { ref: glitchRef } = useGlitchAnimation({ repeatDelay: 5 });
@@ -228,7 +194,6 @@ const BlogSection = () => {
     start: "top 85%",
   });
 
-  // Simplified GSAP animation - single setup
   useEffect(() => {
     if (hasAnimatedRef.current || !headerRef.current) return;
     hasAnimatedRef.current = true;
@@ -254,7 +219,6 @@ const BlogSection = () => {
     return () => ctx.revert();
   }, []);
 
-  // Memoized articles array
   const articles = useMemo(
     () => [
       {
@@ -317,12 +281,10 @@ const BlogSection = () => {
     [],
   );
 
-  // Stable callback for hover
   const handleHover = useCallback((cardId) => {
     setHoveredCard(cardId);
   }, []);
 
-  // Stable callbacks for article clicks
   const handleArticleClick = useCallback(
     (article) => {
       if (article.link) {
@@ -332,7 +294,6 @@ const BlogSection = () => {
     [navigate],
   );
 
-  // Create stable click handlers
   const articleClickHandlers = useMemo(() => {
     return articles.reduce((acc, article) => {
       acc[article.id] = () => handleArticleClick(article);
@@ -340,7 +301,6 @@ const BlogSection = () => {
     }, {});
   }, [articles, handleArticleClick]);
 
-  // Create stable hover handlers
   const articleHoverHandlers = useMemo(() => {
     return articles.reduce((acc, article, index) => {
       acc[article.id] = {
@@ -390,6 +350,32 @@ const BlogSection = () => {
     [needsCarousel],
   );
 
+  const handleTouchStart = useCallback((e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(distance) > minSwipeDistance) {
+      if (distance > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+
+    setTouchStart(0);
+    setTouchEnd(0);
+  }, [touchStart, touchEnd, nextSlide, prevSlide]);
+
   useEffect(() => {
     if (isAutoPlaying && needsCarousel && totalSlides > 1) {
       autoPlayRef.current = setInterval(() => {
@@ -420,7 +406,6 @@ const BlogSection = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Calculate visible articles
   const visibleArticles = useMemo(() => {
     if (needsCarousel) {
       return articles;
@@ -433,7 +418,6 @@ const BlogSection = () => {
       ref={sectionRef}
       className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 overflow-hidden bg-base-100"
     >
-      {/* Simplified decorative element - removed excessive opacity layers */}
       <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
         <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 relative text-primary">
           <svg viewBox="0 0 400 400" className="w-full h-full">
@@ -504,7 +488,12 @@ const BlogSection = () => {
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
         >
-          <div className="relative overflow-hidden w-full">
+          <div
+            className="relative overflow-hidden w-full"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             {needsCarousel ? (
               <>
                 <div
@@ -537,7 +526,7 @@ const BlogSection = () => {
                     <button
                       onClick={prevSlide}
                       disabled={currentIndex === 0}
-                      className="absolute left-0 top-1/2 -translate-y-1/2 z-40 w-12 h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group"
                     >
                       <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                     </button>
@@ -545,7 +534,7 @@ const BlogSection = () => {
                     <button
                       onClick={nextSlide}
                       disabled={currentIndex >= articles.length - itemsPerView}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 z-40 w-12 h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group"
                     >
                       <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
                     </button>
@@ -560,7 +549,6 @@ const BlogSection = () => {
                         onClick={() => goToSlide(index)}
                         className="relative group/dot"
                       >
-                        {/* Removed blur effect */}
                         <div
                           className={`relative h-2 rounded-full transition-all duration-300 border ${
                             index === currentIndex
