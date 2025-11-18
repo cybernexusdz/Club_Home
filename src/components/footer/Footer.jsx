@@ -23,7 +23,7 @@ const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
+    
   const socialLinks = [
     {
       name: "Telegram",
@@ -33,19 +33,19 @@ const Footer = () => {
     },
     {
       name: "Instagram",
-      href: "https://instagram.com",
+      href: "https://www.instagram.com/cybernexusdz/",
       icon: Instagram,
       color: "from-pink-500 to-purple-500",
     },
     {
       name: "TikTok",
-      href: "https://vm.tiktok.com/ZSHc7fLSpmfqq-MMoyK/",
+      href: "https://www.tiktok.com/@cybernexusdz?lang=en",
       icon: null,
       color: "from-cyan-500 to-cyan-400",
     },
     {
       name: "Facebook",
-      href: "https://facebook.com",
+      href: "https://www.facebook.com/cybernexusdz/",
       icon: Facebook,
       color: "from-blue-500 to-blue-600",
     },
